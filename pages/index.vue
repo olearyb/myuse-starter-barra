@@ -36,7 +36,9 @@
                 </p>
               </v-col>
               <v-col cols="12">
-                <hr class="my-10" />
+                <v-divider class="my-2"></v-divider>
+              </v-col>
+              <v-col cols="12">
                 <v-checkbox
                   v-model="checkbox"
                   :label="`Checkbox 1: ${checkbox.toString()}`"
@@ -55,35 +57,38 @@
                 ></v-switch>
               </v-col>
               <v-col cols="12">
-                <hr class="my-10" />
+                <v-divider class="my-2"></v-divider>
+              </v-col>
+              <v-col cols="12">
                 <v-select
-                  :items="items"
+                  :items="selectItems"
                   label="Select list"
                   outlined
                 ></v-select>
                 <v-text-field
-                  v-model="firstname"
-                  :rules="nameRules"
+                  v-model="textInput"
                   :counter="100"
                   label="Text Input"
                   outlined
-                  required
                 ></v-text-field>
                 <v-textarea
-                  outlined
+                  v-model="textInput2"
                   label="Outlined textarea"
-                  value=""
+                  outlined
                 ></v-textarea>
+              </v-col>
+              <v-col cols="12">
+                <v-divider class="my-2"></v-divider>
               </v-col>
               <v-col cols="12">
                 <v-subheader class="pl-0">Always show thumb label</v-subheader>
                 <v-slider v-model="slider" thumb-label="always"></v-slider>
               </v-col>
               <v-col cols="12">
-                <hr class="my-10" />
-                <v-btn class="ma-2" outlined color="indigo"
-                  >Outlined Button</v-btn
-                >
+                <v-divider class="my-5"></v-divider>
+                <v-btn class="ma-2" outlined color="indigo">
+                  Outlined Button
+                </v-btn>
                 <v-btn class="ma-2" outlined fab color="teal">
                   <v-icon>mdi-format-list-bulleted-square</v-icon>
                 </v-btn>
@@ -91,24 +96,24 @@
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
                 <div class="my-2">
-                  <v-btn x-small color="secondary" dark
-                    >Extra small Button</v-btn
-                  >
+                  <v-btn x-small color="info">
+                    Extra small Button
+                  </v-btn>
                 </div>
                 <div class="my-2">
-                  <v-btn small color="primary" dark>Small Button</v-btn>
+                  <v-btn small color="accent">Small Button</v-btn>
                 </div>
                 <div class="my-2">
-                  <v-btn color="warning" dark>Normal Button</v-btn>
+                  <v-btn color="warning">Normal Button</v-btn>
                 </div>
                 <div class="my-2">
-                  <v-btn color="error" dark large>Large Button</v-btn>
+                  <v-btn large color="error">Large Button</v-btn>
                 </div>
                 <div class="my-2">
-                  <v-btn x-large color="success" dark>Extra large Button</v-btn>
+                  <v-btn x-large color="success">Extra large Button</v-btn>
                 </div>
                 <div class="my-2">
-                  <v-btn rounded color="primary" dark>Rounded Button</v-btn>
+                  <v-btn rounded color="primary">Rounded Button</v-btn>
                 </div>
               </v-col>
             </v-row>
@@ -126,7 +131,9 @@ export default {
       checkbox: true,
       radioGroup: 1,
       switch1: true,
-      items: ["Option One", "Option Two", "Option Three", "Option Four"],
+      selectItems: ["Option One", "Option Two", "Option Three", "Option Four"],
+      textInput: "",
+      textInput2: "",
       slider: 45,
     }
   },

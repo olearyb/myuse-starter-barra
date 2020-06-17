@@ -8,7 +8,7 @@
           </v-icon>
           Support
         </h1>
-        <v-card class="question card__text pa-sm-5 py-5 px-2">
+        <v-card class="card__text pa-sm-5 py-5 px-2">
           <v-card-text>
             <v-row>
               <v-col cols="12">
@@ -17,11 +17,36 @@
                   <a href="https://myuse.netlify.app/support" target="_blank"
                     >support page</a
                   >
-                  for students to find further assistance and advise.
+                  for students to find further assistance and advise. Example
+                  images below.
                 </p>
               </v-col>
             </v-row>
           </v-card-text>
+        </v-card>
+        <v-card class="my-5 pa-sm-5 py-5 px-2">
+          <v-img
+            :src="require('~/assets/images/support.svg')"
+            class="text-center"
+          />
+        </v-card>
+        <v-card class="my-5 pa-sm-5 py-5 px-2">
+          <v-img
+            :src="require('~/assets/images/header.svg')"
+            class="text-center"
+          />
+        </v-card>
+        <v-card class="my-5 pa-sm-5 py-5 px-2">
+          <v-img
+            :src="require('~/assets/images/skills.svg')"
+            class="text-center"
+          />
+        </v-card>
+        <v-card class="my-5 pa-sm-5 py-5 px-2">
+          <v-img
+            :src="require('~/assets/images/study.svg')"
+            class="text-center"
+          />
         </v-card>
       </v-col>
     </v-row>

@@ -8,7 +8,6 @@ To get started with the project, you will first need to install NodeJS. You can 
 
 - [NodeJS installer](https://nodejs.org/en/download/)
 
-
 Next, you will need to download the project folder from Git Lab.
 
 The best way to do this is to use the below commands in your Terminal.

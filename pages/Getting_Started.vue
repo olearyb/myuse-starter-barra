@@ -7,16 +7,11 @@
           <v-icon large color="black">
             mdi-comment-question-outline
           </v-icon>
-          <b> Mindful Breathing Exercise</b>
+          Getting Started
         </h1>
-        <p class="text-center pb-10">
-          This web tool is a breathing exercise that you can follow along to and
-          learn a valuable breathing skill
-        </p>
         <v-card class="question card__text pa-sm-5 py-5 px-2">
           <v-row class="pt-7 pa-sm-10">
             <v-col cols="12" sm="6" class="text_block pa-10">
-              <h2>Follow</h2>
               <p>
                 the instructions on screen while breathing deeply and counting
                 each breath
@@ -24,7 +19,7 @@
             </v-col>
             <v-col cols="12" sm="6" class="intro_img pa-10">
               <v-img
-                :src="require('~/assets/images/follow.svg')"
+                :src="require('~/assets/images/inhale_widev.svg')"
                 class="inhale"
               />
             </v-col>
@@ -33,12 +28,11 @@
           <v-row class="pb-7 pa-sm-10">
             <v-col cols="12" sm="6" class="intro_img pa-10">
               <v-img
-                :src="require('~/assets/images/customize.svg')"
+                :src="require('~/assets/images/study.svg')"
                 class="text-center inhale"
               />
             </v-col>
             <v-col cols="12" sm="6" class="text_block pa-10">
-              <h2>Customise</h2>
               <p>
                 your experience by changing the length of each breath and the
                 colours of the animation
@@ -56,27 +50,13 @@
             </v-col>
             <v-col cols="12" sm="6" class="intro_img pa-10">
               <v-img
-                :src="require('~/assets/images/learn.svg')"
+                :src="require('~/assets/images/study.svg')"
                 class="text-center inhale"
               />
             </v-col>
           </v-row>
           <hr class="ma-10" />
-          <v-row class="pt-7 pb-7 pa-sm-10">
-            <v-col cols="12" sm="6" class="intro_img pa-10">
-              <v-img
-                :src="require('~/assets/images/decisions.svg')"
-                class="text-center inhale"
-              />
-            </v-col>
-            <v-col cols="12" sm="6" class="text_block pa-10">
-              <h2>Make Desicions</h2>
-              <p>
-                more mindfully by slowing down your breathing and allowing
-                yourself headspace and time to reflect
-              </p>
-            </v-col>
-          </v-row>
+          <v-row class="pt-7 pb-7 pa-sm-10"></v-row>
           <div class="my-2 text-center pb-10">
             <v-btn color="primary" dark large>Get Started</v-btn>
           </div>

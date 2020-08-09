@@ -2,21 +2,23 @@
   <div id="page__home">
     <v-row dense>
       <v-col cols="12">
-        <v-img :src="require('~/assets/images/top.svg')" class="semi_circle" />
+        <v-img
+          :src="require('~/assets/images/top_pink.svg')"
+          class="semi_circle"
+        />
         <h1 class="card__header">
           <v-icon large color="black">
             mdi-comment-question-outline
           </v-icon>
-          <b> Mindful Breathing Exercise</b>
+          <b> Benefits</b>
         </h1>
         <p class="text-center pb-10">
-          This web tool is a breathing exercise that you can follow along to and
-          learn a valuable breathing skill.<br /><br />Keep scrolling to learn
-          more and get started!
+          Learn more about some of the benefits associated with the mindful
+          breathing techniques used in this web tool.
         </p>
         <v-card class="question card__text pa-sm-5 py-5 px-2">
           <v-row class="pt-7 pa-sm-10">
-            <v-col cols="12" sm="6" class="text_block pa-10 my-auto">
+            <v-col cols="12" sm="6" class="text_block pa-10">
               <h2>Follow</h2>
               <p>
                 the instructions on screen while breathing deeply and counting

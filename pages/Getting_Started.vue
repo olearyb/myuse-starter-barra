@@ -2,7 +2,6 @@
   <div id="page__home">
     <v-row dense>
       <v-col cols="12">
-        <v-img :src="require('~/assets/images/top.svg')" class="semi_circle" />
         <h1 class="card__header">
           <v-icon large color="black">
             mdi-comment-question-outline
@@ -10,16 +9,16 @@
           Getting Started
         </h1>
         <v-card class="question card__text pa-sm-5 py-5 px-2">
-          <v-row class="pt-7 pa-sm-10">
-            <v-col cols="12" sm="6" class="text_block pa-10">
+          <v-row class="pt-7 pa-sm-10 py-10">
+            <v-col cols="12" sm="6" class="text_block pa-10 my-auto">
               <p>
-                the instructions on screen while breathing deeply and counting
-                each breath
+                Try to make sure that you're <b>seated upright</b>
+                in a comfortable chair with your feet flat on the floor.
               </p>
             </v-col>
             <v-col cols="12" sm="6" class="intro_img pa-10">
               <v-img
-                :src="require('~/assets/images/inhale_widev.svg')"
+                :src="require('~/assets/images/SittingAsset.svg')"
                 class="inhale"
               />
             </v-col>
@@ -28,37 +27,26 @@
           <v-row class="pb-7 pa-sm-10">
             <v-col cols="12" sm="6" class="intro_img pa-10">
               <v-img
-                :src="require('~/assets/images/study.svg')"
+                :src="require('~/assets/images/learn.svg')"
                 class="text-center inhale"
               />
             </v-col>
-            <v-col cols="12" sm="6" class="text_block pa-10">
+            <v-col cols="12" sm="6" class="text_block pa-10 my-auto">
               <p>
-                your experience by changing the length of each breath and the
-                colours of the animation
+                For your first time, try to be in a stress-free,
+                <b>quiet environment</b> where you can focus on your breathing.
+              </p>
+              <br />
+              <p>
+                When your ready, click the <b>try it out</b> button below to go
+                to the breathing tool and try it yourself!
               </p>
             </v-col>
           </v-row>
-          <hr class="ma-10" />
-          <v-row class="pt-7 pb-7 pa-sm-10">
-            <v-col cols="12" sm="6" class="text_block pa-10">
-              <h2>Learn</h2>
-              <p>
-                a valuable and beneficial breathing technique than can have
-                positive health effects as well as allowing you to slow down
-              </p>
-            </v-col>
-            <v-col cols="12" sm="6" class="intro_img pa-10">
-              <v-img
-                :src="require('~/assets/images/study.svg')"
-                class="text-center inhale"
-              />
-            </v-col>
-          </v-row>
-          <hr class="ma-10" />
-          <v-row class="pt-7 pb-7 pa-sm-10"></v-row>
           <div class="my-2 text-center pb-10">
-            <v-btn color="primary" dark large>Get Started</v-btn>
+            <nuxt-link to="/Breath">
+              <v-btn color="primary" dark large>Try It Out</v-btn>
+            </nuxt-link>
           </div>
         </v-card>
       </v-col>
@@ -84,8 +72,5 @@ export default {
 <style scoped>
 .title {
   padding-top: 0%;
-}
-.inhale {
-  max-width: 90%;
 }
 </style>

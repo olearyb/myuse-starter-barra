@@ -30,7 +30,6 @@
                 <p class="pa-5 text-center">
                   This tool is in development. Check back soon.
                 </p>
-                <Nav />
                 <div class="pa-5 text-center">
                   <v-btn large>...</v-btn>
                 </div>

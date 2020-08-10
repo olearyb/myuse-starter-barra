@@ -1,15 +1,14 @@
 /* eslint-disable */
-let canvas, ctx
-let render, init
-let blob
+
 // Blob Class
 export default class Blob {
   // setup function
-  constructor(color) {
+  constructor(color, canvas) {
     //the objects setup
     // 'this' is a reference to the current class
     this.points = []
     this._color = color
+    this.canvas = canvas
   }
   init() {
     for (let i = 0; i < this.numPoints; i++) {

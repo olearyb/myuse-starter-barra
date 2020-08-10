@@ -12,12 +12,13 @@ let blob;
 class Blob {
 
   // setup function
-  constructor(color) {
+  constructor(color, canvas) {
 
     //the objects setup
     // 'this' is a reference to the current class
     this.points = [];
     this._color = color;
+    this.canvas = canvas;
 
   }
 
@@ -106,7 +107,7 @@ class Blob {
     return this._color;
   }
   
-  set canvas(value) {
+  /*set canvas(value) {
     if(value instanceof HTMLElement && value.tagName.toLowerCase() === 'canvas') {
       this._canvas = canvas;
       this.ctx = this._canvas.getContext('2d');
@@ -114,7 +115,7 @@ class Blob {
   }
   get canvas() {
     return this._canvas;
-  }
+  }*/
   
   set numPoints(value) {
     if(value > 10) {

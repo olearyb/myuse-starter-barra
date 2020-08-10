@@ -8,13 +8,15 @@
 
 <script>
 import Blob from "../assets/content/Blob_Point"
-//import { Point } from "../assets/content/Blob_Point"
+import { Point } from "../assets/content/Blob_Point"
 //import Point from "../assets/content/Blob_Point"
+let width = window.innerWidth
+let height = window.innerHeight
 let oldMousePoint = { x: 0, y: 0 }
 let blob = new Blob()
 //let point = new Point()
 let hover = false
-let canvas
+//let canvas = this.canvas
 export default {
   data() {
     return {
@@ -23,6 +25,8 @@ export default {
       y: 0,
       isDrawing: false,
       rectWidth: 200,
+      width: width,
+      height: height,
       //hover: false,
       //oldMousePoint: { x: 0, y: 0 },
     }
@@ -30,13 +34,19 @@ export default {
   mounted() {
     let canvas = document.getElementById("myCanvas")
     this.canvas = canvas.getContext("2d")
-  },
-  created() {
-    new Blob("#C09EFF")
+    canvas.setAttribute("touch-action", "none")
+    document.body.appendChild(canvas)
+    new Blob("#C09EFF", this.canvas)
     blob.canvas = canvas
     blob.init()
     blob.render()
   },
+  /*created() {
+    new Blob("#C09EFF")
+    blob.canvas = canvas
+    blob.init()
+    blob.render()
+  },*/
   methods: {
     /* showCoordinates(e) {
       this.x = e.offsetX
@@ -134,6 +144,13 @@ export default {
       }
       oldMousePoint.x = e.clientX
       oldMousePoint.y = e.clientY
+    },
+    init() {
+      for (let i = 0; i < this.numPoints; i++) {
+        let point = new Point(this.divisional * (i + 1), this)
+        //point.acceleration = -1 + Math.random() * 2;
+        this.push(point)
+      }
     },
   },
 }

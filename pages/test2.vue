@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1 class="pa-5 text-center">Blob</h1>
-    <canvas id="myCanvas" width="600" height="400"></canvas>
+    <canvas id="canvas" width="800" height="800" @mouseover="mouseMove">
+    </canvas>
     <!--<v-btn @click="drawRect">Clear</v-btn> -->
   </div>
 </template>
@@ -32,21 +33,23 @@ export default {
     }
   },
   mounted() {
-    let canvas = document.getElementById("myCanvas")
+    let canvas = document.getElementById("canvas")
     this.canvas = canvas.getContext("2d")
     canvas.setAttribute("touch-action", "none")
-    document.body.appendChild(canvas)
+    //document.body.appendChild(canvas)
+    //window.addEventListener("mousemove", mouseMove)
     new Blob("#C09EFF", this.canvas)
     blob.canvas = canvas
     blob.init()
     blob.render()
   },
-  /*created() {
-    new Blob("#C09EFF")
-    blob.canvas = canvas
-    blob.init()
-    blob.render()
-  },*/
+  created() {
+    //new Blob("#C09EFF")
+    //blob.canvas = canvas
+    //blob.init()
+    //blob.render()
+    //window.addEventListener("pointermove", mouseMove)
+  },
   methods: {
     /* showCoordinates(e) {
       this.x = e.offsetX
@@ -84,8 +87,8 @@ export default {
       }
     }, */
     resize() {
-      document.getElementById("myCanvas").width = window.innerWidth
-      document.getElementById("myCanvas").height = window.innerHeight
+      document.getElementById("canvas").width = window.innerWidth
+      document.getElementById("canvas").height = window.innerHeight
     },
     /*drawRect() {
       this.vueCanvas.clearRect(0, 0, 600, 800)
@@ -148,7 +151,7 @@ export default {
     init() {
       for (let i = 0; i < this.numPoints; i++) {
         let point = new Point(this.divisional * (i + 1), this)
-        //point.acceleration = -1 + Math.random() * 2;
+        point.acceleration = -1 + Math.random() * 2
         this.push(point)
       }
     },

@@ -7,7 +7,7 @@ export default class Blob {
     //the objects setup
     // 'this' is a reference to the current class
     this.points = []
-    this._color = color
+    this.color = color
     this.canvas = canvas
   }
   init() {
@@ -67,7 +67,7 @@ export default class Blob {
     let angle = Math.atan2(this.mousePos.y, this.mousePos.x) + Math.PI;
     ctx.fillRect(center.x + Math.cos(angle) * this.radius, center.y + Math.sin(angle) * this.radius, 5, 5);
     }*/
-    //requestAnimationFrame(this.render.bind(this))
+    requestAnimationFrame(this.render.bind(this))
   }
 
   push(item) {

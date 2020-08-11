@@ -279,7 +279,7 @@ init = function() {
       y: pos.y - e.clientY 
     };
     
-    if(dist < blob.radius && this.hover === false) {
+    if(dist < blob.radius && hover === false) {
       let vector = { 
         x: e.clientX - pos.x, 
         y: e.clientY - pos.y 

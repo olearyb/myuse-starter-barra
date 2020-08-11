@@ -8,8 +8,10 @@
           </v-icon>
           Mindful Breathing
         </h1>
-        <canvas id="canvas" width="450" height="450"></canvas>
-        <h1 class="instructions">{{ breathText[0] }}</h1>
+        <div class="canv_wrap">
+          <canvas id="canvas" width="500" height="500"></canvas>
+          <h1 class="instructions">{{ breathText[0] }}</h1>
+        </div>
         <v-container fluid class="container">
           <v-row align="center" justify="center">
             <v-spacer></v-spacer>
@@ -44,6 +46,7 @@ import { Point } from "../assets/content/Blob_Point"
 let oldMousePoint = { x: 0, y: 0 }
 let blob = new Blob()
 let hover = false
+let canvas = document.getElementById("canvas")
 export default {
   data() {
     return {
@@ -71,10 +74,16 @@ export default {
     blob.init()
     blob.render()
     blob.f_varySize()
+    /*this.$nextTick(() => {
+      this.resize()
+    })
+    window.addEventListener("resize", this.resize)*/
   },
   created() {
     window.addEventListener("pointermove", this.mouseMove)
     window.addEventListener("mousemove", this.mouseMove)
+    window.addEventListener("resize", this.resize)
+    //canvas.setAttribute("touch-action", "none")
   },
   methods: {
     start() {
@@ -99,8 +108,17 @@ export default {
     // ------------------------------------------//
     // ------ Window Resize (Not functioning)---//
     resize() {
-      document.getElementById("canvas").width = window.innerWidth
-      document.getElementById("canvas").height = window.innerHeight
+      console.log("resized")
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      /*canvas.$nextTick(() => {
+        blob = new Blob(this.color, this.canvas)
+        blob.color = "#8CE5EA"
+        blob.canvas = canvas
+        blob.init()
+        blob.render()
+        blob.f_varySize()
+      }) */
     },
     //-------//
     // -------- spring/wave animation on mouseOver of blob ----//
@@ -186,8 +204,11 @@ export default {
 
 <style scoped>
 #canvas {
+  width: 100%;
+  height: auto;
+  position: relative;
   border: 1px solid grey;
-  z-index: -1;
+  z-index: 0;
 }
 .instructions {
   color: #fff;
@@ -196,5 +217,15 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
+}
+.container {
+  z-index: 100;
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.canv_wrap {
+  position: relative;
 }
 </style>

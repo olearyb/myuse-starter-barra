@@ -8,8 +8,7 @@
           </v-icon>
           Mindful Breathing
         </h1>
-        <canvas id="canvas" width="450" height="450" @mouseover="mouseMove">
-        </canvas>
+        <canvas id="canvas" width="450" height="450"></canvas>
         <h1 class="instructions">{{ breathText[0] }}</h1>
         <v-container fluid class="container">
           <v-row align="center" justify="center">
@@ -38,28 +37,13 @@
     </v-row>
   </div>
 </template>
-<!--<template>
-  <div>
-    <h1 class="pa-5 text-center">Blob</h1>
-    <canvas id="canvas" width="700" height="700" @mouseover="mouseMove">
-    </canvas>
-    <v-btn @click="drawRect">Clear</v-btn> 
-  </div>
-</template> -->
 
 <script>
 import Blob from "../assets/content/Blob_Point"
 import { Point } from "../assets/content/Blob_Point"
-//import Point from "../assets/content/Blob_Point"
-//let width = window.innerWidth
-//let height = window.innerHeight
 let oldMousePoint = { x: 0, y: 0 }
 let blob = new Blob()
-//let point = new Point()
 let hover = false
-//let dir = this.dir
-//let canvas = this.canvas
-//let radius = this.radius
 export default {
   data() {
     return {
@@ -75,31 +59,12 @@ export default {
       timerState: "stopped",
       displaySec: 10,
       breathText: ["Inhale", "Hold", "Exhale", "Hold"],
-      //color: "#C09EFF",
-      //width: width,
-      //height: height,
-      //hover: false,
-      //oldMousePoint: { x: 0, y: 0 },
     }
   },
-  /* watch: {
-    displaySec: {
-      handler(value) {
-        if (value > 0) {
-          setTimeout(() => {
-            this.displaySec--
-          }, 1000)
-        }
-      },
-      immediate: true,
-    },
-  },*/
   mounted() {
     let canvas = document.getElementById("canvas")
     this.canvas = canvas.getContext("2d")
     canvas.setAttribute("touch-action", "none")
-    //let dir = 0.25
-    //document.body.appendChild(canvas)
     blob = new Blob(this.color, this.canvas)
     blob.color = "#8CE5EA"
     blob.canvas = canvas
@@ -108,11 +73,7 @@ export default {
     blob.f_varySize()
   },
   created() {
-    //new Blob("#C09EFF")
-    //blob.canvas = canvas
-    //blob.init()
-    //blob.render()
-    //window.addEventListener("pointermove", mouseMove)
+    window.addEventListener("pointermove", this.mouseMove)
     window.addEventListener("mousemove", this.mouseMove)
   },
   methods: {
@@ -125,6 +86,7 @@ export default {
         this.timerState = "stopped"
       }
     },
+    // ------ Text Change methods + Timer ---------//
     tick() {
       this.timer = window.setInterval(() => {
         this.textChange()
@@ -134,52 +96,14 @@ export default {
       const first = this.breathText.shift()
       this.breathText = this.breathText.concat(first)
     },
-    /* showCoordinates(e) {
-      this.x = e.offsetX
-      this.y = e.offsetY
-    },
-    drawLine(x1, y1, x2, y2) {
-      let ctx = this.vueCanvas
-      ctx.beginPath()
-      ctx.strokeStyle = "black"
-      ctx.lineWidth = 1
-      ctx.moveTo(x1, y1)
-      ctx.lineTo(x2, y2)
-      ctx.stroke()
-      ctx.closePath()
-    },
-    draw(e) {
-      if (this.isDrawing) {
-        this.drawLine(this.x, this.y, e.offsetX, e.offsetY)
-        this.x = e.offsetX
-        this.y = e.offsetY
-      }
-    },
-    beginDrawing(e) {
-      this.x = e.offsetX
-      this.y = e.offsetY
-      this.isDrawing = true
-    },
-    stopDrawing(e) {
-      if (this.isDrawing) {
-        this.drawLine(this.x, this.y, e.offsetX, e.offsetY)
-        this.x = 0
-        this.y = 0
-        this.isDrawing = false
-        //windowWidth = 0,
-      }
-    }, */
+    // ------------------------------------------//
+    // ------ Window Resize (Not functioning)---//
     resize() {
       document.getElementById("canvas").width = window.innerWidth
       document.getElementById("canvas").height = window.innerHeight
     },
-    /*drawRect() {
-      this.vueCanvas.clearRect(0, 0, 600, 800)
-
-      //this.vueCanvas.beginPath()
-      //this.vueCanvas.rect(20, 20, this.rectWidth, 100)
-      //this.vueCanvas.stroke()
-    },*/
+    //-------//
+    // -------- spring/wave animation on mouseOver of blob ----//
     mouseMove(e) {
       let pos = blob.center
       let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y }
@@ -231,6 +155,8 @@ export default {
       oldMousePoint.x = e.clientX
       oldMousePoint.y = e.clientY
     },
+    // ----- //
+    // ------ Blob initialisation ------//
     init() {
       for (let i = 0; i < this.numPoints; i++) {
         let point = new Point(this.divisional * (i + 1), this)
@@ -238,9 +164,8 @@ export default {
         this.push(point)
       }
     },
-    /*start() {
-      this.f_varySize()
-    },*/
+    //---------//
+    // ------ changing blob radius (Not working) ----//
     f_varySize() {
       console.log("testing")
       this.ticker = setInterval(() => {
@@ -261,7 +186,7 @@ export default {
 
 <style scoped>
 #canvas {
-  /*border: 1px solid grey;*/
+  border: 1px solid grey;
   z-index: -1;
 }
 .instructions {

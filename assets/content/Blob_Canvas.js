@@ -107,7 +107,7 @@ class Blob {
     return this._color;
   }
   
-  /*set canvas(value) {
+  set canvas(value) {
     if(value instanceof HTMLElement && value.tagName.toLowerCase() === 'canvas') {
       this._canvas = canvas;
       this.ctx = this._canvas.getContext('2d');
@@ -115,7 +115,7 @@ class Blob {
   }
   get canvas() {
     return this._canvas;
-  }*/
+  }
   
   set numPoints(value) {
     if(value > 10) {
@@ -279,7 +279,7 @@ init = function() {
       y: pos.y - e.clientY 
     };
     
-    if(dist < blob.radius && hover === false) {
+    if(dist < blob.radius && this.hover === false) {
       let vector = { 
         x: e.clientX - pos.x, 
         y: e.clientY - pos.y 

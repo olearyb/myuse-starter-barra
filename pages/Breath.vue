@@ -32,36 +32,6 @@
             <v-spacer></v-spacer>
           </v-row>
         </v-container>
-        <!-- <div class="panel text-center">
-          <v-container
-            fluid
-            class="fixed-bottom question card__text pa-sm-5 py-5 px-2 control"
-          >
-            <v-row cols="12">
-              <v-col class="text-center">
-                <v-btn>
-                  <v-icon large color="black">
-                    mdi-volume-high
-                  </v-icon>
-                </v-btn>
-              </v-col>
-              <v-col class="text-center">
-                <v-btn>
-                  <v-icon large color="black">
-                    mdi-play
-                  </v-icon>
-                </v-btn>
-              </v-col>
-              <v-col class="text-center">
-                <v-btn>
-                  <v-icon large color="black">
-                    mdi-tune-vertical
-                  </v-icon>
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-container>
-        </div> -->
       </v-col>
     </v-row>
   </div>

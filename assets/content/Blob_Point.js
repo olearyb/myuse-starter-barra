@@ -3,11 +3,11 @@
 // Blob Class
 export default class Blob {
   // setup function
-  constructor(color, canvas) {
+  constructor(color, canvas, radius) {
     //the objects setup
     // 'this' is a reference to the current class
     this.points = []
-    this.color = color
+    this._color = color
     this.canvas = canvas
   }
   init() {
@@ -107,7 +107,7 @@ export default class Blob {
     }
   }
   get radius() {
-    return this._radius || 300
+    return this._radius || 200
   }
   set position(value) {
     if (typeof value == "object" && value.x && value.y) {
@@ -131,6 +131,18 @@ export default class Blob {
   }
   get running() {
     return this.running !== false
+  }
+  f_varySize() {
+    if (this.radius > 200) {
+    this.dir = -.25;
+    //console.log(g_radius);
+  }
+  if (this.radius < 200) {
+    this.dir = .25;
+    //console.log(g_radius);
+  }
+  this.radius += this.dir;
+  
   }
 }
 // Point Class

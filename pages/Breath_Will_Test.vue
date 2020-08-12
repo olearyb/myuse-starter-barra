@@ -41,7 +41,6 @@
 
 <script>
 import Blob from "../assets/content/Blob_Point"
-import { Point } from "../assets/content/Blob_Point"
 
 export default {
   data() {
@@ -83,34 +82,37 @@ export default {
     },
   },
   mounted() {
-    let canvas = this.$refs.canvas
-    this.blob = new Blob(this.color, canvas.getContext("2d"))
-    this.blob.color = this.color
-    this.blob.canvas = canvas
-    this.blob.radius = this.blob.canvas.width - this.padding
-    this.blob.init()
-    this.blob.render()
-    this.blob.canvas.height = this.blob.canvas.width
+    this.init(this.$refs.canvas)
   },
   methods: {
-    init() {
-      for (let i = 0; i < this.numPoints; i++) {
-        let point = new Point(this.divisional * (i + 1), this)
-        point.acceleration = -1 + Math.random() * 2
-        this.push(point)
-      }
+    init(canvas) {
+      this.blob = new Blob(this.color, canvas.getContext("2d"))
+      this.blob.canvas = canvas
+      this.blob.canvas.height = this.blob.canvas.width
+      this.blob.color = this.color
+
+      this.setRadius()
+      this.blob.init()
+      this.blob.render()
     },
     toggle() {
       this.animating = !this.animating
       if (this.animating) {
         this.animate()
       } else {
-        window.clearInterval(this.textAnimation)
-        window.clearInterval(this.blobAnimation)
+        this.reset()
       }
     },
+    reset() {
+      window.clearInterval(this.textAnimation)
+      window.clearInterval(this.blobAnimation)
+      this.setRadius()
+      this.step = 0
+    },
+    setRadius() {
+      this.blob.radius = this.blob.canvas.width - this.padding
+    },
     animate() {
-      console.log("animate")
       this.varySize()
       this.textAnimation = window.setInterval(() => {
         this.incrementStep()
@@ -118,11 +120,6 @@ export default {
       }, this.currentStep.duration)
     },
     incrementStep() {
-      console.log(
-        this.step,
-        this.breathConfig.length,
-        this.step < this.breathConfig.length
-      )
       if (this.step < this.breathConfig.length - 1) {
         this.step += 1
       } else {

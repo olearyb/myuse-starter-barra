@@ -78,56 +78,81 @@ export default {
   },
   computed: {
     currentStep() {
+      // return the current step config
       return this.breathConfig[this.step]
     },
   },
   mounted() {
+    // pass the canvas element from DOM
     this.init(this.$refs.canvas)
   },
   methods: {
     init(canvas) {
+      // create new blob
       this.blob = new Blob(this.color, canvas.getContext("2d"))
+      // attach canvas element to Blob
       this.blob.canvas = canvas
+      // set height to be same as width (square)
       this.blob.canvas.height = this.blob.canvas.width
-      this.blob.color = this.color
-
+      // set default color
+      this.setColor(this.color)
+      // initialise blob
       this.setRadius()
       this.blob.init()
       this.blob.render()
     },
     toggle() {
+      // toggle animation on/off
       this.animating = !this.animating
       if (this.animating) {
+        // play button was clicked
         this.animate()
       } else {
+        // stop button was clicked
         this.reset()
       }
     },
     reset() {
+      // remove all timers
       window.clearInterval(this.textAnimation)
       window.clearInterval(this.blobAnimation)
+      // reset blob size
       this.setRadius()
+      // reset steps
       this.step = 0
     },
     setRadius() {
+      // set blob radius to canvas width, minus some edge space
       this.blob.radius = this.blob.canvas.width - this.padding
     },
+    setColor(color) {
+      // update blob color
+      this.blob.color = color
+    },
     animate() {
+      // start changing blob size immediately
       this.varySize()
+      // change text after delay, and start new animation
       this.textAnimation = window.setInterval(() => {
+        // go to next animation step
         this.incrementStep()
         this.varySize()
+        // duration comes from config
       }, this.currentStep.duration)
     },
     incrementStep() {
+      // loop through breathing steps
       if (this.step < this.breathConfig.length - 1) {
         this.step += 1
       } else {
+        // loop back to beginning
         this.step = 0
       }
     },
     varySize() {
+      // stop current animation
       window.clearInterval(this.blobAnimation)
+      // start new animation, using current DIR
       this.blobAnimation = setInterval(() => {
         this.blob.radius += this.currentStep.dir
       }, 20)
@@ -162,6 +187,7 @@ export default {
   }
 }
 
+/* resize for longer screens like iPad (vertical) */
 @media screen and (min-height: 1000px) {
   #canvas {
     width: 90%;

@@ -82,6 +82,7 @@ import Blob from "../assets/content/Blob_Point"
 export default {
   data() {
     return {
+<<<<<<< HEAD
       ctrlPanel: null,
       volPanel: null,
       x: 0,
@@ -98,12 +99,14 @@ export default {
         { title: "Abeet" },
       ],
       canvas: null,
+=======
+>>>>>>> 53361b8d0cdd19d010ff79948b2e229484a58ddd
       blob: null,
-      hover: false,
       animating: false,
       step: 0,
-      padding: 160,
+      padding: 10,
       breathConfig: [
+        { text: "Press Play" },
         {
           dir: -0.2,
           text: "Inhale",
@@ -168,7 +171,7 @@ export default {
       this.animating = !this.animating
       if (this.animating) {
         // play button was clicked
-        this.animate()
+        this.start()
       } else {
         // stop button was clicked
         this.reset()
@@ -184,37 +187,37 @@ export default {
       this.step = 0
     },
     setRadius() {
-      // set blob radius to canvas width, minus some edge space
-      this.blob.radius = this.blob.canvas.width - this.padding
+      // set blob radius to canvas diameter / 2, minus padding space
+      this.blob.radius = this.blob.canvas.width / 2 - this.padding
     },
     setColor(color) {
       // update blob color
       this.blob.color = color
     },
-    animate() {
-      // start changing blob size immediately
-      this.varySize()
-      // change text after delay, and start new animation
+    start() {
+      // start animating immediately
+      this.animate()
+      // animate next steps with timer
       this.textAnimation = window.setInterval(() => {
-        // go to next animation step
-        this.incrementStep()
-        this.varySize()
-        // duration comes from config
+        this.animate()
+        // step duration from config
       }, this.currentStep.duration)
     },
-    incrementStep() {
+    nextStep() {
       // loop through breathing steps
       if (this.step < this.breathConfig.length - 1) {
         this.step += 1
       } else {
-        // loop back to beginning
-        this.step = 0
+        // loop back to start
+        this.step = 1
       }
     },
-    varySize() {
+    animate() {
       // stop current animation
       window.clearInterval(this.blobAnimation)
-      // start new animation, using current DIR
+      // go to next step
+      this.nextStep()
+      // start new animation, using next step config
       this.blobAnimation = setInterval(() => {
         this.blob.radius += this.currentStep.dir
       }, 20)

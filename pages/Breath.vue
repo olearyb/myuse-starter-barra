@@ -8,6 +8,17 @@
           </v-icon>
           Mindful Breathing
         </h1>
+        <h2>Inline Swatches</h2>
+        <div>
+          <v-swatches
+            v-model="color"
+            inline
+            :swatches="swatchesArray"
+            :spacing-size="10"
+            background-color="transparent"
+            show-border
+          />
+        </div>
         <div id="canvas"></div>
         <v-container fluid class="container">
           <v-row align="center" justify="center">
@@ -39,8 +50,18 @@
 
 <script>
 import p5 from "p5"
+import VSwatches from "vue-swatches"
+import "vue-swatches/dist/vue-swatches.css"
 export default {
   //layout: "breath",
+  components: {
+    VSwatches,
+  },
+  data() {
+    return {
+      color: "#1CA085",
+    }
+  },
   created() {
     const test = (sketch) => {
       let g_canvas = document.getElementById("canvas")

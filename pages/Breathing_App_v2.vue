@@ -6,50 +6,55 @@
           <v-icon large color="black">
             mdi-comment-question-outline
           </v-icon>
-          Mindful Breathing
+          Mindful Breath
         </h1>
         <div ref="canv_wrap" class="canv_wrap">
-          <canvas id="canvas" ref="canvas" touch-action="none"></canvas>
+          <canvas
+            id="canvas"
+            ref="canvas"
+            touch-action="none"
+            @mouseover="mouseMove = true"
+            @mouseleave="mouseMove = false"
+          ></canvas>
           <h1 class="instructions">{{ currentStep.text }}</h1>
+          <v-container fluid class="container">
+            <v-row align="center" justify="center">
+              <v-spacer></v-spacer>
+              <v-btn
+                fab
+                medium
+                color="secondary"
+                @click.stop="volPanel = !volPanel"
+              >
+                <v-icon color="black">
+                  mdi-volume-high
+                </v-icon>
+              </v-btn>
+              <v-spacer></v-spacer>
+              <v-btn fab x-large color="primary" @click="toggle">
+                <v-icon v-if="animating" large color="white">mdi-stop</v-icon>
+                <v-icon v-else large color="white">mdi-play</v-icon>
+              </v-btn>
+              <v-spacer></v-spacer>
+              <v-btn
+                fab
+                medium
+                color="secondary"
+                @click.stop="ctrlPanel = !ctrlPanel"
+              >
+                <v-icon color="black">
+                  mdi-tune-vertical
+                </v-icon>
+              </v-btn>
+              <v-spacer></v-spacer>
+            </v-row>
+          </v-container>
         </div>
-        <v-container fluid class="container">
-          <v-row align="center" justify="center">
-            <v-spacer></v-spacer>
-            <v-btn
-              fab
-              medium
-              color="secondary"
-              @click.stop="volPanel = !volPanel"
-            >
-              <v-icon color="black">
-                mdi-volume-high
-              </v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn fab x-large color="primary" @click="toggle">
-              <v-icon v-if="animating" large color="white">mdi-stop</v-icon>
-              <v-icon v-else large color="white">mdi-play</v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn
-              fab
-              medium
-              color="secondary"
-              @click.stop="ctrlPanel = !ctrlPanel"
-            >
-              <v-icon color="black">
-                mdi-tune-vertical
-              </v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
-          </v-row>
-        </v-container>
         <v-navigation-drawer
           v-model="ctrlPanel"
           color="#fff"
           absolute
           temporary
-          right
           hide-overlay
         >
           <v-list dense>
@@ -58,13 +63,7 @@
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
-        <v-navigation-drawer
-          v-model="volPanel"
-          absolute
-          temporary
-          right
-          hide-overlay
-        >
+        <v-navigation-drawer v-model="volPanel" absolute temporary hide-overlay>
           <v-list dense>
             <v-list-item v-for="item in items" :key="item.title" link>
               {{ item.title }}
@@ -78,7 +77,8 @@
 
 <script>
 import Blob from "../assets/content/Blob_Point"
-
+let oldMousePoint = { x: 0, y: 0 }
+let hover = false
 export default {
   data() {
     return {
@@ -90,22 +90,16 @@ export default {
         { title: "Dashboard" },
         { title: "Photos" },
         { title: "About" },
-        { title: "Dishboard" },
-        { title: "Fotos" },
-        { title: "Aboot" },
-        { title: "Doshboard" },
-        { title: "Fitos" },
-        { title: "Abeet" },
       ],
       canvas: null,
       blob: null,
       hover: false,
       animating: false,
       step: 0,
-      padding: 160,
+      padding: 200,
       breathConfig: [
         {
-          dir: -0.2,
+          dir: 0.2,
           text: "Inhale",
           duration: 5000,
         },
@@ -115,7 +109,7 @@ export default {
           duration: 5000,
         },
         {
-          dir: 0.2,
+          dir: -0.2,
           text: "Exhale",
           duration: 5000,
         },
@@ -144,10 +138,10 @@ export default {
     window.addEventListener("mousemove", this.mouseMove)
     window.addEventListener("pointermove", this.mouseMove)
   },
-  destroyed() {
+  /*destroyed() {
     window.removeEventListener("mousemove", this.mouseMove)
     window.removeEventListener("pointermove", this.mouseMove)
-  },
+  },*/
   methods: {
     init(canvas) {
       // create new blob
@@ -156,6 +150,56 @@ export default {
       this.blob.canvas = canvas
       // set height to be same as width (square)
       this.blob.canvas.height = this.blob.canvas.width
+      // set up mouse event
+      /*this.mouseMove = mouseMove((e) => {
+        let pos = this.blob.center
+        let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y }
+        let dist = Math.sqrt(diff.x * diff.x + diff.y * diff.y)
+        let angle = null
+        this.blob.mousePos = {
+          x: pos.x - e.clientX,
+          y: pos.y - e.clientY,
+        }
+        if (dist < this.blob.radius && hover === false) {
+          let vector = {
+            x: e.clientX - pos.x,
+            y: e.clientY - pos.y,
+          }
+          angle = Math.atan2(vector.y, vector.x)
+          hover = true
+        } else if (dist > this.blob.radius && hover === true) {
+          let vector = {
+            x: e.clientX - pos.x,
+            y: e.clientY - pos.y,
+          }
+          angle = Math.atan2(vector.y, vector.x)
+          hover = false
+          this.blob.color = null
+        }
+        if (typeof angle == "number") {
+          let nearestPoint = null
+          let distanceFromPoint = 100
+          this.blob.points.forEach((point) => {
+            if (Math.abs(angle - point.azimuth) < distanceFromPoint) {
+              // console.log(point.azimuth, angle, distanceFromPoint);
+              nearestPoint = point
+              distanceFromPoint = Math.abs(angle - point.azimuth)
+            }
+          })
+          if (nearestPoint) {
+            let strength = {
+              x: oldMousePoint.x - e.clientX,
+              y: oldMousePoint.y - e.clientY,
+            }
+            strength =
+              Math.sqrt(strength.x * strength.x + strength.y * strength.y) * 1
+            if (strength > 100) strength = 100
+            nearestPoint.acceleration = (strength / 100) * (hover ? -1 : 1)
+          }
+        }
+        oldMousePoint.x = e.clientX
+        oldMousePoint.y = e.clientY
+      })*/
       // set default color
       this.setColor(this.color)
       // initialise blob
@@ -219,10 +263,8 @@ export default {
         this.blob.radius += this.currentStep.dir
       }, 20)
     },
-    /*mouseMove(e) {
+    mouseMove(e) {
       console.log(e.clientX, e.clientY)
-      let blob = this.blob
-      //let hover = false
       let pos = this.blob.center
       let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y }
       let dist = Math.sqrt(diff.x * diff.x + diff.y * diff.y)
@@ -231,27 +273,27 @@ export default {
         x: pos.x - e.clientX,
         y: pos.y - e.clientY,
       }
-      if (dist < this.blob.radius && this.hover === false) {
+      if (dist < this.blob.radius && hover === false) {
         let vector = {
           x: e.clientX - pos.x,
           y: e.clientY - pos.y,
         }
         angle = Math.atan2(vector.y, vector.x)
-        this.hover = true
-      } else if (dist > this.blob.radius && this.hover === true) {
+        hover = true
+      } else if (dist > this.blob.radius && hover === true) {
         let vector = {
           x: e.clientX - pos.x,
           y: e.clientY - pos.y,
         }
 
         angle = Math.atan2(vector.y, vector.x)
-        this.hover = false
-        blob.color = null
+        hover = false
+        this.blob.color = null
       }
       if (typeof angle == "number") {
         let nearestPoint = null
         let distanceFromPoint = 100
-        blob.points.forEach((point) => {
+        this.blob.points.forEach((point) => {
           if (Math.abs(angle - point.azimuth) < distanceFromPoint) {
             nearestPoint = point
             distanceFromPoint = Math.abs(angle - point.azimuth)
@@ -259,17 +301,17 @@ export default {
         })
         if (nearestPoint) {
           let strength = {
-            x: this.oldMousePoint.x - e.clientX,
-            y: this.oldMousePoint.y - e.clientY,
+            x: oldMousePoint.x - e.clientX,
+            y: oldMousePoint.y - e.clientY,
           }
           Math.sqrt(strength.x * strength.x + strength.y * strength.y) * 1
           if (strength > 100) strength = 100
-          nearestPoint.acceleration = (strength / 100) * (this.hover ? -1 : 1)
+          nearestPoint.acceleration = (strength / 100) * (hover ? -1 : 1)
         }
       }
-      this.oldMousePoint.x = e.clientX
-      this.oldMousePoint.y = e.clientY
-    },*/
+      oldMousePoint.x = e.clientX
+      oldMousePoint.y = e.clientY
+    },
   },
 }
 </script>

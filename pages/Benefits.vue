@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col cols="12">
         <v-img
-          :src="require('~/assets/images/top_pink.svg')"
+          :src="require('~/assets/images/top_purple.svg')"
           class="semi_circle"
         />
         <h1 class="card__header">
@@ -17,17 +17,34 @@
           breathing techniques used in this web tool.
         </p>
         <v-card class="question card__text pa-sm-5 py-5 px-2">
+          <v-row class="pb-7 pa-sm-10">
+            <v-col cols="12" sm="6" class="intro_img pa-10">
+              <v-img
+                :src="require('~/assets/images/lungs.svg')"
+                class="text-center inhale"
+              />
+            </v-col>
+            <v-col cols="12" sm="6" class="text_block pa-10">
+              <p>
+                Square breathing is a technique used when taking
+                <b>slow, deep breaths.</b>It can heighten performance and
+                concentration while also being a powerful stress reliever.
+              </p>
+            </v-col>
+          </v-row>
+          <hr class="ma-10" />
           <v-row class="pt-7 pa-sm-10">
             <v-col cols="12" sm="6" class="text_block pa-10">
-              <h2>Follow</h2>
               <p>
-                the instructions on screen while breathing deeply and counting
-                each breath
+                Evidence shows that intentional deep breathing techniques have a
+                positive effect and can help regulate the human bodies
+                <b>Autonomic Nervous System</b> that regulates involuntary
+                bodily functions.
               </p>
             </v-col>
             <v-col cols="12" sm="6" class="intro_img pa-10">
               <v-img
-                :src="require('~/assets/images/follow.svg')"
+                :src="require('~/assets/images/nervous_system.svg')"
                 class="text-center inhale"
               />
             </v-col>
@@ -36,53 +53,56 @@
           <v-row class="pb-7 pa-sm-10">
             <v-col cols="12" sm="6" class="intro_img pa-10">
               <v-img
-                :src="require('~/assets/images/customize.svg')"
-                class="text-center inhale"
-              />
-            </v-col>
-            <v-col cols="12" sm="6" class="text_block pa-10">
-              <h2>Customise</h2>
-              <p>
-                your experience by changing the length of each breath and the
-                colours of the animation
-              </p>
-            </v-col>
-          </v-row>
-          <hr class="ma-10" />
-          <v-row class="pt-7 pb-7 pa-sm-10">
-            <v-col cols="12" sm="6" class="text_block pa-10">
-              <h2>Learn</h2>
-              <p>
-                a valuable and beneficial breathing technique than can have
-                positive health effects as well as allowing you to slow down
-              </p>
-            </v-col>
-            <v-col cols="12" sm="6" class="intro_img pa-10">
-              <v-img
                 :src="require('~/assets/images/learn.svg')"
                 class="text-center inhale"
               />
             </v-col>
+            <v-col cols="12" sm="6" class="text_block pa-10">
+              <p>
+                Square Breathing can <b>reduce stress</b> and improve your mood
+                when practiced regularly. It is also an aid for those who suffer
+                from anxiety disorders, trauma, depression and chronic disease.
+              </p>
+            </v-col>
           </v-row>
           <hr class="ma-10" />
           <v-row class="pt-7 pb-7 pa-sm-10">
-            <v-col cols="12" sm="6" class="intro_img pa-10">
-              <v-img
-                :src="require('~/assets/images/decisions.svg')"
-                class="text-center inhale"
-              />
+            <v-col cols="12" sm="6" class="text_block pa-10">
+              <h2>Resources</h2>
+              <p>
+                Use the following links if you would like to learn more and
+                discover more ways of employing mindful techniques into your
+                daily life.
+              </p>
             </v-col>
             <v-col cols="12" sm="6" class="text_block pa-10">
-              <h2>Make Desicions</h2>
-              <p>
-                more mindfully by slowing down your breathing and allowing
-                yourself headspace and time to reflect
+              <p class="mind_resources pt-10">
+                <a
+                  href="https://www2.hse.ie/wellbeing/mental-health/mindfulness.html"
+                  target="_blank"
+                >
+                  What is Mindfulness?<br />
+                </a>
+                <br />
+                <a
+                  href="https://www.healthline.com/health/box-breathing"
+                  target="_blank"
+                >
+                  What is Box Breathing?<br />
+                </a>
+                <br />
+                <a
+                  href="https://portlandpsychotherapy.com/self-compassion-meditations/"
+                  target="_blank"
+                >
+                  Audio Guided Meditations<br />
+                </a>
               </p>
             </v-col>
           </v-row>
           <div class="my-2 text-center pb-10">
-            <nuxt-link to="/Getting_Started">
-              <v-btn color="primary" dark large>Get Started</v-btn>
+            <nuxt-link to="/Breathing_App_v2">
+              <v-btn color="primary" dark large>Back</v-btn>
             </nuxt-link>
           </div>
         </v-card>

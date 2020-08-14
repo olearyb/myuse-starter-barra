@@ -3,7 +3,7 @@
 // Blob Class
 export default class Blob {
   // setup function
-  constructor(color, canvas, radius) {
+  constructor(color, canvas) {
     //the objects setup
     // 'this' is a reference to the current class
     this.points = []
@@ -107,7 +107,7 @@ export default class Blob {
     }
   }
   get radius() {
-    return this._radius || 200
+    return this._radius || 50
   }
   set position(value) {
     if (typeof value == "object" && value.x && value.y) {
@@ -118,7 +118,7 @@ export default class Blob {
     return this._position || { x: 0.5, y: 0.5 }
   }
   get divisional() {
-    return (Math.PI * 2) / this.numPoints
+    return Math.PI * 2 / this.numPoints
   }
   get center() {
     return {
@@ -131,18 +131,6 @@ export default class Blob {
   }
   get running() {
     return this.running !== false
-  }
-  f_varySize() {
-    if (this.radius > 200) {
-    this.dir = -.25;
-    //console.log(g_radius);
-  }
-  if (this.radius < 200) {
-    this.dir = .25;
-    //console.log(g_radius);
-  }
-  this.radius += this.dir;
-  
   }
 }
 // Point Class
@@ -220,3 +208,4 @@ export class Point {
     return this._friction || 0.0085
   }
 }
+

@@ -16,7 +16,8 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "nuxt": "^2.0.0",
     "p5": "^1.1.9",
-    "pepjs": "^0.5.2"
+    "pepjs": "^0.5.2",
+    "vue-swatches": "^2.1.0"
   },
   "devDependencies": {
     "@mdi/font": "^5.3.45",

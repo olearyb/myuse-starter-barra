@@ -14,7 +14,6 @@
             ref="canvas"
             touch-action="none"
             @mouseover="mouseMove = true"
-            @mouseleave="mouseMove = false"
           ></canvas>
           <h1 class="instructions">{{ currentStep.text }}</h1>
           <v-container fluid class="container">
@@ -86,11 +85,7 @@ export default {
       volPanel: null,
       x: 0,
       y: 0,
-      items: [
-        { title: "Dashboard" },
-        { title: "Photos" },
-        { title: "About" },
-      ],
+      items: [{ title: "Dashboard" }, { title: "Photos" }, { title: "About" }],
       canvas: null,
       blob: null,
       hover: false,

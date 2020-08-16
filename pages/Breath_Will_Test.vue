@@ -2,11 +2,8 @@
   <div id="page__home">
     <v-row dense>
       <v-col cols="12" align="center" justify="center">
-        <h1 class="card__header">
-          <v-icon large color="black">
-            mdi-comment-question-outline
-          </v-icon>
-          Mindful Breathing
+        <h1 class="card__header mx-10">
+          Mindful Breath
         </h1>
         <div ref="canv_wrap" class="canv_wrap">
           <canvas id="canvas" ref="canvas" touch-action="none"></canvas>
@@ -18,10 +15,10 @@
             <v-btn
               fab
               medium
-              color="secondary"
+              color="primary"
               @click.stop="volPanel = !volPanel"
             >
-              <v-icon color="black">
+              <v-icon color="white">
                 mdi-volume-high
               </v-icon>
             </v-btn>
@@ -34,42 +31,166 @@
             <v-btn
               fab
               medium
-              color="secondary"
+              color="primary"
               @click.stop="ctrlPanel = !ctrlPanel"
             >
-              <v-icon color="black">
+              <v-icon color="white">
                 mdi-tune-vertical
               </v-icon>
             </v-btn>
             <v-spacer></v-spacer>
           </v-row>
+          <div>
+            <v-row align="center" justify="center" class="mt-2">
+              <v-col cols="12">
+                <nuxt-link to="/More_Info">
+                  <v-btn medium class="mx-5 custom"
+                    ><v-icon>mdi-information-outline</v-icon></v-btn
+                  >
+                </nuxt-link>
+                <nuxt-link to="/Benefits">
+                  <v-btn medium class="mx-5 custom"
+                    ><v-icon> mdi-heart-pulse</v-icon></v-btn
+                  >
+                </nuxt-link>
+              </v-col>
+            </v-row>
+          </div>
         </v-container>
         <v-navigation-drawer
+          v-if="$vuetify.breakpoint.smAndUp"
           v-model="ctrlPanel"
           color="#fff"
           absolute
           temporary
-          right
           hide-overlay
         >
+          <v-toolbar dark color="primary">
+            <v-toolbar-title>Control Panel</v-toolbar-title>
+          </v-toolbar>
           <v-list dense>
-            <v-list-item v-for="item in items" :key="item.title" link>
-              {{ item.title }}
-            </v-list-item>
+            <v-col cols="12">
+              <v-subheader class="pl-0 pt-5">Inhale count</v-subheader>
+              <v-slider v-model="in_slider" min="1" max="8" class="py-5">
+                <template v-slot:append>
+                  <v-text-field
+                    v-model="in_slider"
+                    class="mt-0 pt-0 custom"
+                    readonly
+                    single-line
+                    type="number"
+                    style="width: 20px;"
+                    align="center"
+                  ></v-text-field>
+                </template>
+              </v-slider>
+              <hr />
+              <v-subheader class="pl-0 pt-5">1st Hold</v-subheader>
+              <v-slider v-model="hold1_slider" min="1" max="8" class="py-5">
+                <template v-slot:append>
+                  <v-text-field
+                    v-model="hold1_slider"
+                    class="mt-0 pt-0 custom"
+                    readonly
+                    single-line
+                    type="number"
+                    style="width: 20px;"
+                    align="center"
+                  ></v-text-field>
+                </template>
+              </v-slider>
+              <hr />
+              <v-subheader class="pl-0 pt-5">Exhale count</v-subheader>
+              <v-slider v-model="ex_slider" min="1" max="8" class="py-5">
+                <template v-slot:append>
+                  <v-text-field
+                    v-model="ex_slider"
+                    class="mt-0 pt-0 custom"
+                    readonly
+                    single-line
+                    type="number"
+                    style="width: 20px;"
+                    align="center"
+                  ></v-text-field>
+                </template>
+              </v-slider>
+              <hr />
+              <v-subheader class="pt-5">2nd Hold</v-subheader>
+              <v-slider v-model="hold2_slider" min="1" max="8" class="py-5">
+                <template v-slot:append>
+                  <v-text-field
+                    v-model="hold2_slider"
+                    class="mt-0 pt-0 custom"
+                    readonly
+                    single-line
+                    type="number"
+                    style="width: 20px;"
+                    align="center"
+                  ></v-text-field>
+                </template>
+              </v-slider>
+              <hr />
+              <v-subheader class="py-10">Animation Colour</v-subheader>
+              <v-swatches
+                inline
+                :swatches="swatches"
+                row-length="2"
+                shapes="circles"
+              ></v-swatches>
+            </v-col>
           </v-list>
         </v-navigation-drawer>
         <v-navigation-drawer
+          v-if="$vuetify.breakpoint.smAndUp"
           v-model="volPanel"
+          color="#fff"
           absolute
           temporary
-          right
           hide-overlay
         >
-          <v-list dense>
-            <v-list-item v-for="item in items" :key="item.title" link>
-              {{ item.title }}
-            </v-list-item>
-          </v-list>
+          <v-toolbar dark color="primary">
+            <v-toolbar-title>Audio</v-toolbar-title>
+          </v-toolbar>
+          <v-col cols="12">
+            <v-subheader>
+              Audio On / Off
+            </v-subheader>
+            <v-switch
+              v-model="switch1"
+              align="center"
+              justify="center"
+              class="px-10"
+            ></v-switch>
+            <hr />
+            <v-subheader>Audio Volume</v-subheader>
+            <v-slider
+              v-model="vol_slider"
+              color="primary"
+              track-color="grey"
+              always-dirty
+              min="0"
+              max="10"
+            >
+              <template v-slot:prepend>
+                <v-icon @click="decrement">
+                  mdi-volume-low
+                </v-icon>
+              </template>
+              <template v-slot:append>
+                <v-icon @click="increment">
+                  mdi-volume-high
+                </v-icon>
+              </template>
+            </v-slider>
+            <hr />
+            <v-subheader>Instrument</v-subheader>
+            <v-radio-group v-model="synth" column class="px-5">
+              <v-radio label="Piano" value="radio-1"></v-radio>
+              <v-radio label="Violin" value="radio-2"></v-radio>
+              <v-radio label="Sky Pads" value="radio-3"></v-radio>
+              <v-radio label="Guitar" value="radio-4"></v-radio>
+            </v-radio-group>
+          </v-col>
         </v-navigation-drawer>
       </v-col>
     </v-row>
@@ -78,37 +199,32 @@
 
 <script>
 import Blob from "../assets/content/Blob_Point"
+import VSwatches from "vue-swatches"
 
 export default {
+  components: { VSwatches },
   data() {
     return {
-<<<<<<< HEAD
+      switch1: true,
+      colorpick: null,
+      swatches: ["#8CE5EA", "#4FD17F", "#000", "#44C3A7"],
+      synth: null,
+      in_slider: "",
+      hold1_slider: "",
+      ex_slider: "",
+      hold2_slider: "",
+      vol_slider: "",
       ctrlPanel: null,
       volPanel: null,
-      x: 0,
-      y: 0,
-      items: [
-        { title: "Dashboard" },
-        { title: "Photos" },
-        { title: "About" },
-        { title: "Dishboard" },
-        { title: "Fotos" },
-        { title: "Aboot" },
-        { title: "Doshboard" },
-        { title: "Fitos" },
-        { title: "Abeet" },
-      ],
-      canvas: null,
-=======
->>>>>>> 53361b8d0cdd19d010ff79948b2e229484a58ddd
       blob: null,
       animating: false,
       step: 0,
-      padding: 10,
+      padding: 50,
+      items: [{ title: "Dashboard" }, { title: "Photos" }, { title: "About" }],
       breathConfig: [
         { text: "Press Play" },
         {
-          dir: -0.2,
+          dir: 0.2,
           text: "Inhale",
           duration: 5000,
         },
@@ -118,7 +234,7 @@ export default {
           duration: 5000,
         },
         {
-          dir: 0.2,
+          dir: -0.2,
           text: "Exhale",
           duration: 5000,
         },
@@ -222,6 +338,12 @@ export default {
         this.blob.radius += this.currentStep.dir
       }, 20)
     },
+    decrement() {
+      this.vol_slider--
+    },
+    increment() {
+      this.vol_slider++
+    },
     /*mouseMove(e) {
       console.log(e.clientX, e.clientY)
       let blob = this.blob
@@ -311,9 +433,9 @@ export default {
 }
 
 .container {
-  z-index: 100;
+  z-index: 1;
   position: fixed;
-  bottom: 5%;
+  bottom: 3%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -328,5 +450,8 @@ export default {
   color: #fff;
   position: absolute;
   z-index: 1;
+}
+.custom {
+  border-style: none;
 }
 </style>

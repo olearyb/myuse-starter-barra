@@ -34,7 +34,6 @@
                 <div class="pa-5 text-center">
                   <v-btn large>...</v-btn>
                 </div>
-                <canvas id="myCanvas" width="560" height="360" />
               </v-col>
             </v-row>
           </v-card-text>

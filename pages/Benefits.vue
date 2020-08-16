@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col cols="12">
         <v-img
-          :src="require('~/assets/images/top_purple.svg')"
+          :src="require('~/assets/images/top_pink.svg')"
           class="semi_circle"
         />
         <h1 class="card__header">
@@ -101,7 +101,7 @@
             </v-col>
           </v-row>
           <div class="my-2 text-center pb-10">
-            <nuxt-link to="/Breathing_App_v2">
+            <nuxt-link to="/Breath_Will_Test">
               <v-btn color="primary" dark large>Back</v-btn>
             </nuxt-link>
           </div>

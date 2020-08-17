@@ -2,7 +2,7 @@ export const state = () => ({
   cards: [
     {
       title: "Personal Growth",
-      src: require("~/assets/images/community.svg"),
+      src: require("~/assets/images/values/community.svg"),
       flex: 6,
       id: "1",
     },
@@ -20,37 +20,37 @@ export const state = () => ({
     },
     {
       title: "Work",
-      src: require("~/assets/images/sitting.svg"),
+      src: require("~/assets/images/values/work.svg"),
       flex: 6,
       id: "4",
     },
     {
       title: "Health",
-      src: require("~/assets/images/follow.svg"),
+      src: require("~/assets/images/values/health.svg"),
       flex: 6,
       id: "5",
     },
     {
       title: "Community & Environment",
-      src: require("~/assets/images/girl_compass.svg"),
+      src: require("~/assets/images/values/community.svg"),
       flex: 6,
       id: "6",
     },
     {
       title: "Family Relationships",
-      src: require("~/assets/images/skills.svg"),
+      src: require("~/assets/images/values/family.svg"),
       flex: 6,
       id: "7",
     },
     {
       title: "Social Relationships",
-      src: require("~/assets/images/thought_bubbles.svg"),
+      src: require("~/assets/images/values/social.svg"),
       flex: 6,
       id: "8",
     },
     {
       title: "Intimate Relationships",
-      src: require("~/assets/images/study.svg"),
+      src: require("~/assets/images/values/intimate.svg"),
       flex: 6,
       id: "9",
     },

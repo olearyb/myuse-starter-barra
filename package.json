@@ -16,6 +16,7 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "chart.js": "^2.9.3",
     "es6-promise": "^4.2.8",
+    "hchs-vue-charts": "^1.2.8",
     "nuxt": "^2.0.0",
     "p5": "^1.1.9",
     "pepjs": "^0.5.2",

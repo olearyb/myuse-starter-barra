@@ -7,7 +7,7 @@
 <script>
 import DomainTemplate from "@/components/DomainTemplate"
 export default {
-  layout: "valueTabs",
+  layout: "tabs",
   components: {
     DomainTemplate,
   },

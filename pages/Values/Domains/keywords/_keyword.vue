@@ -67,7 +67,7 @@ import { mapGetters } from "vuex"
 export default {
   data() {
     return {
-      id: this.$route.params.keywords,
+      id: this.$route.params.keyword,
       select: [],
       items: [],
       search: "", //sync search

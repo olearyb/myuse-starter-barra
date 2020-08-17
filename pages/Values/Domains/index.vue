@@ -17,7 +17,7 @@
               :sm="card.flex"
               xs="1"
             >
-              <nuxt-link :to="`keywords/${card.id}`">
+              <nuxt-link :to="`domains/keywords/${card.id}`">
                 <v-card class="pa-5">
                   <v-img :src="card.src" class="white--text align-end ma-5">
                   </v-img>
@@ -38,7 +38,7 @@
 <script>
 import { mapGetters } from "vuex"
 export default {
-  layout: "valueTabs",
+  layout: "tabs",
   computed: {
     ...mapGetters("cards", ["getCards"]),
   },

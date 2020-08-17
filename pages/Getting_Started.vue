@@ -44,7 +44,7 @@
             </v-col>
           </v-row>
           <div class="my-2 text-center pb-10">
-            <nuxt-link to="/Breathing_App_v1">
+            <nuxt-link to="/Breath_Will_Test">
               <v-btn color="primary" dark large>Try It Out</v-btn>
             </nuxt-link>
           </div>

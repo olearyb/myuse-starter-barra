@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DomainTemplate domainTitle="hello from barra" />
+    <DomainTemplate domain-title="hello from barra" />
   </div>
 </template>
 

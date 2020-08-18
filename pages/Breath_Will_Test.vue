@@ -70,6 +70,10 @@
           </v-toolbar>
           <v-list dense>
             <v-col cols="12">
+              <v-btn :value="blue" @click="changeBlue">Blue</v-btn>
+              <v-btn :value="rose" @click="changeRose">Rose</v-btn>
+              <v-btn :value="green" @click="changeGreen">Green</v-btn>
+              <v-btn :value="orange" @click="changeOrange">Orange</v-btn>
               <v-subheader class="pl-0 pt-5">Inhale count</v-subheader>
               <v-slider v-model="in_slider" min="1" max="8" class="py-5">
                 <template v-slot:append>
@@ -205,6 +209,10 @@ export default {
   components: { VSwatches },
   data() {
     return {
+      blue: "#1D8BEA",
+      rose: "#FC54A7",
+      green: "#03EE9B",
+      orange: "#FEAB20",
       switch1: true,
       colorpick: null,
       swatches: ["#8CE5EA", "#4FD17F", "#000", "#44C3A7"],
@@ -281,6 +289,18 @@ export default {
       this.setRadius()
       this.blob.init()
       this.blob.render()
+    },
+    changeBlue() {
+      this.blob.color = this.blue
+    },
+    changeRose() {
+      this.blob.color = this.rose
+    },
+    changeGreen() {
+      this.blob.color = this.green
+    },
+    changeOrange() {
+      this.blob.color = this.orange
     },
     toggle() {
       // toggle animation on/off

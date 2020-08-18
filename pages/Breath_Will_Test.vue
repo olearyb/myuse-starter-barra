@@ -75,7 +75,17 @@
               <v-btn :value="green" @click="changeGreen">Green</v-btn>
               <v-btn :value="orange" @click="changeOrange">Orange</v-btn>
               <v-subheader class="pl-0 pt-5">Inhale count</v-subheader>
-              <v-slider v-model="in_slider" min="1" max="8" class="py-5">
+              <v-slider
+                v-model="ivl"
+                min="1000"
+                max="8000"
+                step="1000"
+                ticks="always"
+                tick-size="4"
+                thumb-label="always"
+                class="py-5"
+                label="Inhale"
+              >
                 <template v-slot:append>
                   <v-text-field
                     v-model="in_slider"
@@ -90,7 +100,17 @@
               </v-slider>
               <hr />
               <v-subheader class="pl-0 pt-5">1st Hold</v-subheader>
-              <v-slider v-model="hold1_slider" min="1" max="8" class="py-5">
+              <v-slider
+                v-model="ivl"
+                min="1000"
+                max="8000"
+                step="1000"
+                ticks="always"
+                tick-size="4"
+                thumb-label="always"
+                class="py-5"
+                label="hold"
+              >
                 <template v-slot:append>
                   <v-text-field
                     v-model="hold1_slider"
@@ -105,7 +125,17 @@
               </v-slider>
               <hr />
               <v-subheader class="pl-0 pt-5">Exhale count</v-subheader>
-              <v-slider v-model="ex_slider" min="1" max="8" class="py-5">
+              <v-slider
+                v-model="ivl"
+                min="1000"
+                max="8000"
+                step="1000"
+                ticks="always"
+                tick-size="4"
+                thumb-label="always"
+                class="py-5"
+                label="exhale"
+              >
                 <template v-slot:append>
                   <v-text-field
                     v-model="ex_slider"
@@ -120,7 +150,17 @@
               </v-slider>
               <hr />
               <v-subheader class="pt-5">2nd Hold</v-subheader>
-              <v-slider v-model="hold2_slider" min="1" max="8" class="py-5">
+              <v-slider
+                v-model="ivl"
+                min="1000"
+                max="8000"
+                step="1000"
+                ticks="always"
+                tick-size="4"
+                thumb-label="always"
+                class="py-5"
+                label="hold"
+              >
                 <template v-slot:append>
                   <v-text-field
                     v-model="hold2_slider"
@@ -228,6 +268,7 @@ export default {
       animating: false,
       step: 0,
       padding: 50,
+      ivl: 1000,
       items: [{ title: "Dashboard" }, { title: "Photos" }, { title: "About" }],
       breathConfig: [
         { text: "Press Play" },
@@ -337,7 +378,9 @@ export default {
       this.textAnimation = window.setInterval(() => {
         this.animate()
         // step duration from config
-      }, this.currentStep.duration)
+        //}, this.currentStep.duration)
+      }, this.ivl)
+      console.log(this.ivl)
     },
     nextStep() {
       // loop through breathing steps

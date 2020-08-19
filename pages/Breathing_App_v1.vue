@@ -43,7 +43,7 @@
 
 <script>
 import Blob from "../assets/content/Blob_Point"
-import { Point } from "../assets/content/Blob_Point"
+//import { Point } from "../assets/content/Blob_Point"
 let oldMousePoint = { x: 0, y: 0 }
 let blob = new Blob()
 let hover = false
@@ -172,13 +172,13 @@ export default {
       oldMousePoint.y = e.clientY
     },
     // ------ Blob initialisation ------//
-    init() {
+    /*init() {
       for (let i = 0; i < this.numPoints; i++) {
         let point = new Point(this.divisional * (i + 1), this)
         //point.acceleration = -1 + Math.random() * 2
         this.push(point)
       }
-    },
+    },*/
     //---------//
   },
 }

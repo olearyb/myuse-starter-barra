@@ -6,7 +6,12 @@
           Mindful Breath
         </h1>
         <div ref="canv_wrap" class="canv_wrap">
-          <canvas id="canvas" ref="canvas" touch-action="none"></canvas>
+          <canvas
+            id="canvas"
+            ref="canvas"
+            touch-action="none"
+            @mouseover="mouseMove"
+          ></canvas>
           <h1 class="instructions">{{ currentStep.text }}</h1>
         </div>
         <v-container fluid class="container">
@@ -244,7 +249,8 @@
 <script>
 import Blob from "../assets/content/Blob_Point"
 import VSwatches from "vue-swatches"
-
+let oldMousePoint = { x: 0, y: 0 }
+let hover = false
 export default {
   components: { VSwatches },
   data() {
@@ -331,6 +337,7 @@ export default {
       this.blob.init()
       this.blob.render()
     },
+    // --- Color CHange functions --- will clean up ---//
     changeBlue() {
       this.blob.color = this.blue
     },
@@ -407,6 +414,59 @@ export default {
     increment() {
       this.vol_slider++
     },
+    mouseMove(e) {
+      let pos = this.blob.center
+      let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y }
+      let distx = diff.x * diff.x
+      let disty = diff.y * diff.y
+      let dist = Math.sqrt(distx + disty)
+      let angle = null
+      this.blob.mousePos = {
+        x: pos.x - e.clientX,
+        y: pos.y - e.clientY,
+      }
+      if (dist < this.blob.radius && hover === false) {
+        let vector = {
+          x: e.clientX - pos.x,
+          y: e.clientY - pos.y,
+        }
+        angle = Math.atan2(vector.y, vector.x)
+        hover = true
+      } else if (dist > this.blob.radius && hover === true) {
+        let vector = {
+          x: e.clientX - pos.x,
+          y: e.clientY - pos.y,
+        }
+
+        angle = Math.atan2(vector.y, vector.x)
+        hover = false
+        this.blob.color = null
+      }
+      if (typeof angle == "number") {
+        let nearestPoint = null
+        let distanceFromPoint = 100
+        this.blob.points.forEach((point) => {
+          if (Math.abs(angle - point.azimuth) < distanceFromPoint) {
+            nearestPoint = point
+            distanceFromPoint = Math.abs(angle - point.azimuth)
+          }
+        })
+        if (nearestPoint) {
+          let strength = {
+            x: oldMousePoint.x - e.clientX,
+            y: oldMousePoint.y - e.clientY,
+          }
+          let strX = strength.x * strength.x
+          let strY = strength.y * strength.y
+          strength = Math.sqrt(strX + strY) * 1
+          if (strength > 100) strength = 100
+          let strDiv = strength / 100
+          nearestPoint.acceleration = strDiv * (hover ? -1 : 1)
+        }
+      }
+      oldMousePoint.x = e.clientX
+      oldMousePoint.y = e.clientY
+    },
     /*mouseMove(e) {
       console.log(e.clientX, e.clientY)
       let blob = this.blob
@@ -464,7 +524,7 @@ export default {
 
 <style scoped>
 #canvas {
-  width: 60%;
+  width: 70%;
   height: auto;
   position: relative;
   z-index: 0;

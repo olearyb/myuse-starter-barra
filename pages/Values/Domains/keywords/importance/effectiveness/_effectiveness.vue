@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col cols="12">
         <h1 class="card__header">
-          Card Title
+          {{ card.title }}
         </h1>
         <v-card class="question card__text pa-sm-5 py-5 px-2">
           <v-row>
@@ -38,10 +38,10 @@
             </v-col>
           </v-row>
           <div class="m-2 text-center pb-10">
-            <nuxt-link to="./importance">
+            <nuxt-link :to="`../${card.id}`">
               <v-btn color="primary" class="mx-5" dark large>Back</v-btn>
             </nuxt-link>
-            <nuxt-link to="domains/keywords/importance/">
+            <nuxt-link :to="`overview/${card.id}`">
               <v-btn color="primary" class="mx-5" dark large>Next</v-btn>
             </nuxt-link>
           </div>
@@ -56,12 +56,16 @@ import { mapGetters } from "vuex"
 export default {
   data() {
     return {
+      id: this.$route.params.effectiveness,
       slider: "",
     }
   },
   computed: {
     ...mapGetters("cards", ["getCards"]),
     //...mapState(["getCards"]),
+    card() {
+      return this.getCards.find((el) => el.id === this.id)
+    },
   },
 }
 </script>

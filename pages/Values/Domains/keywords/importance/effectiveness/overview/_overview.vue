@@ -8,41 +8,23 @@
         <v-card class="question card__text pa-sm-5 py-5 px-2">
           <v-row>
             <v-col cols="12">
-              <h2 class="my-10">Importance</h2>
-              <p>
-                Now that you have listed some keywords that represent your
-                values in this life domain for you personally, the next step is
-                to
-                <b>rate the importance</b> of these values as a whole, at this
-                stage in your life.<br /><br />
-                From 0 - 10, how important are these values to you?
-              </p>
+              <h2 class="my-10">Keywords</h2>
+              <p>list of keywords</p>
             </v-col>
             <v-col cols="12">
               <v-divider class="my-2"></v-divider>
             </v-col>
             <v-col cols="12">
-              <v-row>
-                <v-subheader>Not at all</v-subheader>
-                <v-spacer></v-spacer>
-                <v-subheader>Extremely</v-subheader>
-              </v-row>
-              <v-slider
-                v-model="slider"
-                class="my-10 mx-5"
-                thumb-label="always"
-                min="0"
-                max="10"
-              >
-              </v-slider>
+              <h2 class="my-10">Ratings</h2>
+              <p>Bar Chart</p>
             </v-col>
           </v-row>
           <div class="m-2 text-center pb-10">
             <nuxt-link :to="`../${card.id}`">
               <v-btn color="primary" class="mx-5" dark large>Back</v-btn>
             </nuxt-link>
-            <nuxt-link :to="`effectiveness/${card.id}`">
-              <v-btn color="primary" class="mx-5" dark large>Next</v-btn>
+            <nuxt-link to="/Values/Domains">
+              <v-btn color="primary" class="mx-5" dark large>FInish</v-btn>
             </nuxt-link>
           </div>
         </v-card>
@@ -56,7 +38,7 @@ import { mapGetters } from "vuex"
 export default {
   data() {
     return {
-      id: this.$route.params.importance,
+      id: this.$route.params.overview,
       slider: "",
     }
   },

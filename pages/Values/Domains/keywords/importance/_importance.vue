@@ -16,6 +16,8 @@
                 <b>rate the importance</b> of these values as a whole, at this
                 stage in your life.<br /><br />
                 From 0 - 10, how important are these values to you?
+                <br />
+                {{ importance }}
               </p>
             </v-col>
             <v-col cols="12">
@@ -28,7 +30,7 @@
                 <v-subheader>Extremely</v-subheader>
               </v-row>
               <v-slider
-                v-model="slider"
+                v-model="importance"
                 class="my-10 mx-5"
                 thumb-label="always"
                 min="0"
@@ -57,7 +59,7 @@ export default {
   data() {
     return {
       id: this.$route.params.importance,
-      slider: "",
+      //importance: "",
     }
   },
   computed: {
@@ -65,6 +67,14 @@ export default {
     //...mapState(["getCards"]),
     card() {
       return this.getCards.find((el) => el.id === this.id)
+    },
+    importance: {
+      get() {
+        return this.getCards.importance
+      },
+      set(value) {
+        this.$store.commit("cards/updateImportance", value)
+      },
     },
   },
 }

@@ -16,6 +16,8 @@
                 this stage in your life.<br /><br />
                 From 0 - 10, how effectively are you currently living by these
                 values?
+                <br />
+                {{ effectiveness }}
               </p>
             </v-col>
             <v-col cols="12">
@@ -28,7 +30,7 @@
                 <v-subheader>Extremely</v-subheader>
               </v-row>
               <v-slider
-                v-model="slider"
+                v-model="effectiveness"
                 class="my-10 mx-5"
                 thumb-label="always"
                 min="0"
@@ -57,7 +59,7 @@ export default {
   data() {
     return {
       id: this.$route.params.effectiveness,
-      slider: "",
+      //effectiveness: "",
     }
   },
   computed: {
@@ -66,6 +68,19 @@ export default {
     card() {
       return this.getCards.find((el) => el.id === this.id)
     },
+    effectiveness: {
+      get() {
+        return this.getCards.effectiveness
+      },
+      set(value) {
+        this.$store.commit("cards/updateEffectiveness", value)
+      },
+    },
   },
+  /*methods: {
+    updateEffectiveness(e) {
+      this.$store.dispatch("updateEffectiveness", e.target.value)
+    },
+  },*/
 }
 </script>

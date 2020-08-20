@@ -16,7 +16,12 @@
             </v-col>
             <v-col cols="12">
               <h2 class="my-10">Ratings</h2>
-              <p>Bar Chart</p>
+              <p>
+                Bar Chart<br /><br />
+                {{ effectiveness }}
+                <br />
+                {{ importance }}
+              </p>
             </v-col>
           </v-row>
           <div class="m-2 text-center pb-10">
@@ -47,6 +52,22 @@ export default {
     //...mapState(["getCards"]),
     card() {
       return this.getCards.find((el) => el.id === this.id)
+    },
+    effectiveness: {
+      get() {
+        return this.getCards.effectiveness
+      },
+      set(value) {
+        this.$store.commit("cards/updateEffectiveness", value)
+      },
+    },
+    importance: {
+      get() {
+        return this.getCards.importance
+      },
+      set(value) {
+        this.$store.commit("cards/updateImportance", value)
+      },
     },
   },
 }

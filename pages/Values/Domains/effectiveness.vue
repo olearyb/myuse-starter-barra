@@ -41,7 +41,7 @@
             <nuxt-link to="./importance">
               <v-btn color="primary" class="mx-5" dark large>Back</v-btn>
             </nuxt-link>
-            <nuxt-link to="/">
+            <nuxt-link to="domains/keywords/importance/">
               <v-btn color="primary" class="mx-5" dark large>Next</v-btn>
             </nuxt-link>
           </div>

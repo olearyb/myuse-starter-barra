@@ -49,7 +49,7 @@
                 <nuxt-link to="/Values/Domains">
                   <v-btn color="primary" dark large>Back</v-btn>
                 </nuxt-link>
-                <nuxt-link to="/">
+                <nuxt-link :to="`importance/${card.id}`">
                   <v-btn color="primary" dark large>Next</v-btn>
                 </nuxt-link>
               </div>

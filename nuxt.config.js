@@ -98,7 +98,7 @@ export default {
    ** Customize the base url
    */
   router: {
-    base: "/myuse/", //this is whatever the project is named
+    base: "/myuse-starter-barra/", //this is whatever the project is named
   },
   /*
    ** Build configuration

@@ -45,16 +45,16 @@
               <v-col cols="12">
                 <v-divider class="my-2"></v-divider>
               </v-col>
-              <div class="m-2 text-center pb-10">
-                <nuxt-link to="/Values/Domains">
-                  <v-btn color="primary" dark large>Back</v-btn>
-                </nuxt-link>
-                <nuxt-link to="/">
-                  <v-btn color="primary" dark large>Next</v-btn>
-                </nuxt-link>
-              </div>
             </v-row>
           </v-card-text>
+          <div class="m-2 text-center pb-10">
+            <nuxt-link to="/Values/Domains">
+              <v-btn color="primary" dark large>Back</v-btn>
+            </nuxt-link>
+            <nuxt-link :to="`importance/${card.id}`">
+              <v-btn color="primary" dark large>Next</v-btn>
+            </nuxt-link>
+          </div>
         </v-card>
       </v-col>
     </v-row>

@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col cols="12">
         <h1 class="card__header">
-          Card Title
+          {{ card.title }}
         </h1>
         <v-card class="question card__text pa-sm-5 py-5 px-2">
           <v-row>
@@ -16,6 +16,8 @@
                 <b>rate the importance</b> of these values as a whole, at this
                 stage in your life.<br /><br />
                 From 0 - 10, how important are these values to you?
+                <br />
+                {{ importance }}
               </p>
             </v-col>
             <v-col cols="12">
@@ -28,7 +30,7 @@
                 <v-subheader>Extremely</v-subheader>
               </v-row>
               <v-slider
-                v-model="slider"
+                v-model="importance"
                 class="my-10 mx-5"
                 thumb-label="always"
                 min="0"
@@ -38,10 +40,10 @@
             </v-col>
           </v-row>
           <div class="m-2 text-center pb-10">
-            <nuxt-link to="./importance">
+            <nuxt-link :to="`../${card.id}`">
               <v-btn color="primary" class="mx-5" dark large>Back</v-btn>
             </nuxt-link>
-            <nuxt-link to="./effectiveness">
+            <nuxt-link :to="`effectiveness/${card.id}`">
               <v-btn color="primary" class="mx-5" dark large>Next</v-btn>
             </nuxt-link>
           </div>
@@ -56,12 +58,24 @@ import { mapGetters } from "vuex"
 export default {
   data() {
     return {
-      slider: "",
+      id: this.$route.params.importance,
+      //importance: "",
     }
   },
   computed: {
     ...mapGetters("cards", ["getCards"]),
     //...mapState(["getCards"]),
+    card() {
+      return this.getCards.find((el) => el.id === this.id)
+    },
+    importance: {
+      get() {
+        return this.getCards.importance
+      },
+      set(value) {
+        this.$store.commit("cards/updateImportance", value)
+      },
+    },
   },
 }
 </script>

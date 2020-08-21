@@ -274,7 +274,7 @@ export default {
       breathConfig: [
         { text: "Press Play" },
         {
-          dir: 0.2,
+          dir: -0.2,
           text: "Inhale",
           duration: 5,
         },
@@ -284,7 +284,7 @@ export default {
           duration: 5,
         },
         {
-          dir: -0.2,
+          dir: 0.2,
           text: "Exhale",
           duration: 5,
         },

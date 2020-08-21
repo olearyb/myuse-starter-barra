@@ -5,7 +5,7 @@
         <h1 class="card__header mx-10">
           Mindful Breath
         </h1>
-        <div ref="canv_wrap" class="canv_wrap">
+        <div id="canv_wrap" ref="canv_wrap" class="canv_wrap">
           <canvas
             id="canvas"
             ref="canvas"
@@ -55,7 +55,7 @@
                 </nuxt-link>
                 <nuxt-link to="/Benefits">
                   <v-btn medium class="mx-5 custom"
-                    ><v-icon> mdi-heart-pulse</v-icon></v-btn
+                    ><v-icon>mdi-heart-pulse</v-icon></v-btn
                   >
                 </nuxt-link>
               </v-col>
@@ -81,10 +81,10 @@
               <v-btn :value="orange" @click="changeOrange">Orange</v-btn>
               <v-subheader class="pl-0 pt-5">Inhale count</v-subheader>
               <v-slider
-                v-model="ivl"
-                min="1000"
-                max="8000"
-                step="1000"
+                v-model="breathConfig[1].duration"
+                min="1"
+                max="8"
+                step="1"
                 ticks="always"
                 tick-size="4"
                 thumb-label="always"
@@ -106,10 +106,10 @@
               <hr />
               <v-subheader class="pl-0 pt-5">1st Hold</v-subheader>
               <v-slider
-                v-model="ivl"
-                min="1000"
-                max="8000"
-                step="1000"
+                v-model="breathConfig[2].duration"
+                min="1"
+                max="8"
+                step="1"
                 ticks="always"
                 tick-size="4"
                 thumb-label="always"
@@ -131,10 +131,10 @@
               <hr />
               <v-subheader class="pl-0 pt-5">Exhale count</v-subheader>
               <v-slider
-                v-model="ivl"
-                min="1000"
-                max="8000"
-                step="1000"
+                v-model="breathConfig[3].duration"
+                min="1"
+                max="8"
+                step="1"
                 ticks="always"
                 tick-size="4"
                 thumb-label="always"
@@ -156,10 +156,10 @@
               <hr />
               <v-subheader class="pt-5">2nd Hold</v-subheader>
               <v-slider
-                v-model="ivl"
-                min="1000"
-                max="8000"
-                step="1000"
+                v-model="breathConfig[4].duration"
+                min="1"
+                max="8"
+                step="1"
                 ticks="always"
                 tick-size="4"
                 thumb-label="always"
@@ -273,30 +273,30 @@ export default {
       blob: null,
       animating: false,
       step: 0,
-      padding: 50,
-      ivl: 1000,
+      padding: 20,
+      //ivl: 1000,
       items: [{ title: "Dashboard" }, { title: "Photos" }, { title: "About" }],
       breathConfig: [
         { text: "Press Play" },
         {
-          dir: 0.2,
-          text: "Inhale",
-          duration: 5000,
-        },
-        {
-          dir: 0,
-          text: "Hold",
-          duration: 5000,
-        },
-        {
           dir: -0.2,
-          text: "Exhale",
-          duration: 5000,
+          text: "Inhale",
+          duration: 5,
         },
         {
           dir: 0,
           text: "Hold",
-          duration: 5000,
+          duration: 5,
+        },
+        {
+          dir: 0.2,
+          text: "Exhale",
+          duration: 5,
+        },
+        {
+          dir: 0,
+          text: "Hold",
+          duration: 5,
         },
       ],
       color: "#8CE5EA",
@@ -361,6 +361,11 @@ export default {
         this.reset()
       }
     },
+    toggleCtrlPanel() {
+      this.reset()
+      this.ctrlPanel = !this.ctrlPanel
+      this.animating = !this.animating
+    },
     reset() {
       // remove all timers
       window.clearInterval(this.textAnimation)
@@ -385,9 +390,9 @@ export default {
       this.textAnimation = window.setInterval(() => {
         this.animate()
         // step duration from config
-        //}, this.currentStep.duration)
-      }, this.ivl)
-      console.log(this.ivl)
+      }, this.currentStep.duration * 1000)
+      //}, this.ivl)
+      console.log(this.currentStep.duration)
     },
     nextStep() {
       // loop through breathing steps
@@ -403,6 +408,7 @@ export default {
       window.clearInterval(this.blobAnimation)
       // go to next step
       this.nextStep()
+      //this.toggleCtrlPanel()
       // start new animation, using next step config
       this.blobAnimation = setInterval(() => {
         this.blob.radius += this.currentStep.dir
@@ -416,6 +422,14 @@ export default {
     },
     mouseMove(e) {
       let pos = this.blob.center
+      // ----test for coord adjustments ---//
+      /*let parentPos = document
+        .getElementById("canv_wrap")
+        .getBoundingClientRect()
+      let childPos = document.getElementById("canvas").getBoundingClientRect()
+      let xAdj = e.clientX - parentPos.x
+      let yAdj = e.clientY - parentPos.y */
+      //-----------------------------------//
       let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y }
       let distx = diff.x * diff.x
       let disty = diff.y * diff.y
@@ -425,6 +439,7 @@ export default {
         x: pos.x - e.clientX,
         y: pos.y - e.clientY,
       }
+      console.log(this.blob.mousePos.x, this.blob.mousePos.y)
       if (dist < this.blob.radius && hover === false) {
         let vector = {
           x: e.clientX - pos.x,

@@ -51,6 +51,20 @@ let canvas = document.getElementById("canvas")
 export default {
   data() {
     return {
+      /*
+      current: {},
+      index: 0,
+      songs: [
+        {
+          title: "Ambient Wave",
+          src: require("../assets/audio/ambient_wave.mp3"),
+        },
+        {
+          title: "Ambient Wave",
+          src: require("../assets/audio/ambient_wave.mp3"),
+        },
+      ],
+      player: new Audio(), */
       canvas: null,
       x: 0,
       y: 0,
@@ -75,6 +89,10 @@ export default {
     window.addEventListener("pointermove", this.mouseMove)
     window.addEventListener("mousemove", this.mouseMove)
     window.addEventListener("resize", this.resize)
+    /*
+    this.current = this.songs[this.index]
+    this.player.src = this.current.src
+    this.player.play() */
   },
   methods: {
     start() {

@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col cols="12">
         <v-img
-          :src="require('~/assets/images/top_pink.svg')"
+          :src="require('~/assets/images/top_pink.svg').default"
           class="semi_circle"
         />
         <h1 class="card__header">

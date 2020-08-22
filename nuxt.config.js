@@ -35,7 +35,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [{
-    src: '~/plugins/vue-chart.js', mode: 'client',
+    src: "~/plugins/vue-chart.js", mode: "client",
+    src: "~/plugins/vuex-persistedstate.js", ssr: false,
   }],
   /*
    ** Nuxt.js dev-modules
@@ -92,6 +93,16 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {
+      config.module.rules.push({
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
+      })
+    },
+    /*
+    extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
@@ -101,6 +112,6 @@ export default {
           exclude: /(node_modules)/,
         })
       }
-    },
+    },*/
   },
 }

@@ -49,8 +49,8 @@
       </v-toolbar-title>
       <template v-slot:extension>
         <v-tabs v-model="model" centered grow slider-color="yellow">
-          <v-tab v-for="tab in tabs" :key="tab" :href="`#tab-${tab}`">
-            {{ tab }}
+          <v-tab v-for="(i, index) in tabs" :key="index" :href="i.path">
+            {{ i.name }}
           </v-tab>
         </v-tabs>
       </template>
@@ -68,7 +68,16 @@ let pwaPrompt
 export default {
   data() {
     return {
-      tabs: ["Values", "Dashboard"],
+      tabs: [
+        {
+          name: "Values",
+          path: "/Values/domains",
+        },
+        {
+          name: "Dashboard",
+          path: "/Values/Dashboard",
+        },
+      ],
       model: "tab-2",
       drawer: null,
       items: [

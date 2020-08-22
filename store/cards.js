@@ -2,7 +2,7 @@ export const state = () => ({
   cards: [
     {
       title: "Personal Growth",
-      src: require("~/assets/images/values/community.svg"),
+      src: require("~/assets/images/values/growth.svg"),
       flex: 6,
       id: "1",
       importance: "",
@@ -18,7 +18,7 @@ export const state = () => ({
     },
     {
       title: "Sprituality",
-      src: require("~/assets/images/feedback.svg"),
+      src: require("~/assets/images/values/spirituality.svg"),
       flex: 6,
       id: "3",
       importance: "",
@@ -41,7 +41,7 @@ export const state = () => ({
       effectiveness: "",
     },
     {
-      title: "Community & Environment",
+      title: "Community \n& Environment",
       src: require("~/assets/images/values/community.svg"),
       flex: 6,
       id: "6",
@@ -74,7 +74,7 @@ export const state = () => ({
     },
     {
       title: "Parenting",
-      src: require("~/assets/images/learn_blue.svg"),
+      src: require("~/assets/images/values/parenting.svg"),
       flex: 6,
       id: "10",
       importance: "",
@@ -90,10 +90,12 @@ export const getters = {
 }
 
 export const mutations = {
-  updateEffectiveness(state, effectiveness) {
-    state.cards.effectiveness = effectiveness
+  updateEffectiveness(state, {card, effectiveness}) {
+    card.effectiveness = effectiveness
   },
-  updateImportance(state, importance) {
-    state.cards.importance = importance
+  updateImportance(state, {card, importance}) {
+    card.importance = importance
   },
 }
+
+//state.cards.find((el) => el.id === answer.id).effectiveness = answer.value

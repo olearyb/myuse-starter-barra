@@ -70,17 +70,12 @@ export default {
     },
     effectiveness: {
       get() {
-        return this.getCards.effectiveness
+        return this.card.effectiveness
       },
-      set(value) {
-        this.$store.commit("cards/updateEffectiveness", value)
+      set(effectiveness) {
+        this.$store.commit("cards/updateEffectiveness", { card: this.card, effectiveness})
       },
     },
   },
-  /*methods: {
-    updateEffectiveness(e) {
-      this.$store.dispatch("updateEffectiveness", e.target.value)
-    },
-  },*/
 }
 </script>

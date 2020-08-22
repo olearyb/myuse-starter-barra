@@ -22,7 +22,7 @@
                 <v-divider class="my-2"></v-divider>
               </v-col>
               <v-col cols="12">
-                <v-subheader class="my-5"><b>Keywords</b></v-subheader>
+                <p class="my-5"><b>Keywords</b></p>
                 <!--<v-text-field
                   v-model="textInput"
                   class="py-5"

@@ -21,7 +21,10 @@
                 <v-card class="pa-5">
                   <v-img :src="card.src" class="white--text align-end ma-5">
                   </v-img>
-                  <v-card-title v-text="card.title"></v-card-title>
+                  <v-card-title
+                    class="title"
+                    v-text="card.title"
+                  ></v-card-title>
                   <v-card-actions>
                     <v-btn text>Explore</v-btn>
                   </v-card-actions>
@@ -44,3 +47,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.title {
+  white-space: pre;
+}
+</style>

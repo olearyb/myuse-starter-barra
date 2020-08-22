@@ -70,10 +70,10 @@ export default {
     },
     importance: {
       get() {
-        return this.getCards.importance
+        return this.card.importance
       },
-      set(value) {
-        this.$store.commit("cards/updateImportance", value)
+      set(importance) {
+        this.$store.commit("cards/updateImportance", { card: this.card, importance})
       },
     },
   },

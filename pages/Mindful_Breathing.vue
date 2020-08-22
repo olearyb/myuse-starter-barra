@@ -2,7 +2,10 @@
   <div id="page__home">
     <v-row dense>
       <v-col cols="12">
-        <v-img :src="require('~/assets/images/top.svg')" class="semi_circle" />
+        <v-img
+          :src="require('~/assets/images/top.svg').default"
+          class="semi_circle"
+        />
         <h1 class="card__header">
           <v-icon large color="black">
             mdi-comment-question-outline
@@ -25,9 +28,13 @@
             </v-col>
             <v-col cols="12" sm="6" class="intro_img pa-10">
               <v-img
-                :src="require('~/assets/images/follow.svg')"
+                :src="require('~/assets/images/circle.svg').default"
                 class="text-center inhale"
-              />
+              >
+                <transition name="fade" mode="out-in">
+                  <span v-if="show" class="center"><h3>Breathe</h3></span>
+                </transition>
+              </v-img>
             </v-col>
           </v-row>
           <hr class="ma-10" />
@@ -94,12 +101,25 @@ export default {
   //layout: "breath",
   data() {
     return {
+      show: true,
+      breath: ["Inhale", "hold", "exhale", "hold"],
       checkbox: true,
       radioGroup: 1,
       switch1: true,
       items: ["Option One", "Option Two", "Option Three", "Option Four"],
       slider: 45,
     }
+  },
+  mounted() {
+    window.setInterval(() => {
+      this.breathing()
+    }, 2500)
+  },
+  methods: {
+    breathing() {
+      const first = this.breath.shift()
+      this.breath = this.breath.concat(first)
+    },
   },
 }
 </script>
@@ -113,5 +133,13 @@ export default {
 }
 .semi_circle {
   margin-top: -16px;
+}
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 2s ease-in;
+  color: white;
 }
 </style>

@@ -34,10 +34,19 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
+<<<<<<< HEAD
   plugins: [{
     src: "~/plugins/vue-chart.js", mode: "client",
     src: "~/plugins/vuex-persistedstate.js", ssr: false,
   }],
+=======
+  plugins: [
+    {
+      src: "~/plugins/vue-chart.js",
+      mode: "client",
+    },
+  ],
+>>>>>>> cdfb378354ffe8d7a7e742bd7b62c9cb27a1930b
   /*
    ** Nuxt.js dev-modules
    */
@@ -84,6 +93,19 @@ export default {
         },
       },
     },
+  },
+  /*
+   ** Customize the generated output folder
+   */
+  generate: {
+    dir: "public",
+  },
+
+  /*
+   ** Customize the base url
+   */
+  router: {
+    base: "/myuse-starter-barra/", //this is whatever the project is named
   },
   /*
    ** Build configuration

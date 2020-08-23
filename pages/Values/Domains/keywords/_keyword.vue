@@ -141,6 +141,14 @@ export default {
     card() {
       return this.getCards.find((el) => el.id === this.id)
     },
+    keywords: {
+      get() {
+        return this.card.keywords
+      },
+      set(keywords) {
+        this.$store.commit("cards/updateKeywords", { card: this.card, keywords})
+      }
+    }
   },
   watch: {
     select(val) {

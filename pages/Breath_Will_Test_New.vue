@@ -14,19 +14,20 @@
           ></canvas>
           <h1 class="instructions">{{ currentStep.text }}</h1>
         </div>
-        <v-container fluid class="container">
+        <v-container fluid class="wrapper">
           <v-row align="center" justify="center">
             <v-spacer></v-spacer>
-            <v-btn
+            <!-- <v-btn
               fab
               medium
               color="primary"
               @click.stop="volPanel = !volPanel"
             >
               <v-icon color="white">
-                mdi-volume-high
+                mdi-music
               </v-icon>
-            </v-btn>
+            </v-btn> -->
+            <MusicPlayer />
             <v-spacer></v-spacer>
             <v-btn fab x-large color="primary" @click="toggle">
               <v-icon v-if="animating" large color="white">mdi-stop</v-icon>
@@ -57,6 +58,82 @@
             </v-row>
           </div>
         </v-container>
+        <v-dialog v-if="$vuetify.breakpoint.xsOnly" v-model="ctrlPanel" scrollable max-width="300px">
+          <template v-slot:activator="{ on, attrs }"></template>
+          <v-card class="modal">
+            <v-card-title>Control Panel</v-card-title>
+            <v-divider></v-divider>
+            <v-card-text>
+              <v-list dense>
+            <v-col cols="12">
+              <v-subheader class="py-2">Animation Colour</v-subheader>
+              <v-container class="pb-5 text-center">
+                <v-btn class="ma-1" fab x-small color="#8CE5EA" :value="blue" @click="changeBlue"></v-btn>
+                <v-btn class="ma-1" fab x-small color="#FC54A7" :value="rose" @click="changeRose"></v-btn>
+                <v-btn class="ma-1" fab x-small color="#03EE9B" :value="green" @click="changeGreen"></v-btn>
+                <v-btn class="ma-1" fab x-small color="#FEAB20" :value="orange" @click="changeOrange"></v-btn>
+              </v-container>
+              <hr />
+              <v-subheader class="pl-0 pt-5">Inhale count</v-subheader>
+              <v-slider
+                v-model="breathConfig[1].duration"
+                min="1"
+                max="8"
+                step="1"
+                ticks="always"
+                tick-size="1"
+                class="py-5"
+                :label="breathConfig[1].duration"
+                inverse-label
+              >
+              </v-slider>
+              <hr />
+              <v-subheader class="pl-0 pt-5">1st Hold</v-subheader>
+              <v-slider
+                v-model="breathConfig[2].duration"
+                min="1"
+                max="8"
+                step="1"
+                ticks="always"
+                tick-size="1"
+                class="py-5"
+                :label="breathConfig[2].duration"
+                inverse-label
+              >
+              </v-slider>
+              <hr />
+              <v-subheader class="pl-0 pt-5">Exhale count</v-subheader>
+              <v-slider
+                v-model="breathConfig[3].duration"
+                min="1"
+                max="8"
+                step="1"
+                ticks="always"
+                tick-size="1"
+                class="py-5"
+                :label="breathConfig[3].duration"
+                inverse-label
+              >
+              </v-slider>
+              <hr />
+              <v-subheader class="pt-5">2nd Hold</v-subheader>
+              <v-slider
+                v-model="breathConfig[4].duration"
+                min="1"
+                max="8"
+                step="1"
+                ticks="always"
+                tick-size="1"
+                class="py-5"
+                :label="breathConfig[4].duration"
+                inverse-label
+              >
+              </v-slider>
+            </v-col>
+          </v-list>
+            </v-card-text>
+          </v-card>            
+        </v-dialog>
         <v-navigation-drawer
           v-if="$vuetify.breakpoint.smAndUp"
           v-model="ctrlPanel"
@@ -70,10 +147,14 @@
           </v-toolbar>
           <v-list dense>
             <v-col cols="12">
-              <v-btn :value="blue" @click="changeBlue">Blue</v-btn>
-              <v-btn :value="rose" @click="changeRose">Rose</v-btn>
-              <v-btn :value="green" @click="changeGreen">Green</v-btn>
-              <v-btn :value="orange" @click="changeOrange">Orange</v-btn>
+              <v-subheader class="py-2">Animation Colour</v-subheader>
+              <v-container class="pb-5">
+                <v-btn class="ma-0.5" fab small color="#8CE5EA" :value="blue" @click="changeBlue"></v-btn>
+                <v-btn class="ma-0.5" fab small color="#FC54A7" :value="rose" @click="changeRose"></v-btn>
+                <v-btn class="ma-0.5" fab small color="#03EE9B" :value="green" @click="changeGreen"></v-btn>
+                <v-btn class="ma-0.5" fab small color="#FEAB20" :value="orange" @click="changeOrange"></v-btn>
+              </v-container>
+              <hr />
               <v-subheader class="pl-0 pt-5">Inhale count</v-subheader>
               <v-slider
                 v-model="breathConfig[1].duration"
@@ -82,13 +163,11 @@
                 step="1"
                 ticks="always"
                 tick-size="4"
-                thumb-label="always"
                 class="py-5"
-                label="Inhale"
               >
                 <template v-slot:append>
                   <v-text-field
-                    v-model="in_slider"
+                    v-model="breathConfig[1].duration"
                     class="mt-0 pt-0 custom"
                     readonly
                     single-line
@@ -173,17 +252,57 @@
                   ></v-text-field>
                 </template>
               </v-slider>
-              <hr />
-              <v-subheader class="py-10">Animation Colour</v-subheader>
-              <v-swatches
-                inline
-                :swatches="swatches"
-                row-length="2"
-                shapes="circles"
-              ></v-swatches>
             </v-col>
           </v-list>
         </v-navigation-drawer>
+        <v-dialog v-if="$vuetify.breakpoint.xsOnly" v-model="volPanel" scrollable max-width="300px">
+          <template v-slot:activator="{ on, attrs }"></template>
+          <v-card>
+            <v-card-title>Audio</v-card-title>
+            <v-divider></v-divider>
+            <v-card-text>
+              <v-col cols="12">
+            <v-subheader>
+              Audio On / Off
+            </v-subheader>
+            <v-switch
+              v-model="switch1"
+              align="center"
+              justify="center"
+              class="px-10"
+            ></v-switch>
+            <hr />
+            <v-subheader>Audio Volume</v-subheader>
+            <v-slider
+              v-model="vol_slider"
+              color="primary"
+              track-color="grey"
+              always-dirty
+              min="0"
+              max="10"
+            >
+              <template v-slot:prepend>
+                <v-icon @click="decrement">
+                  mdi-volume-low
+                </v-icon>
+              </template>
+              <template v-slot:append>
+                <v-icon @click="increment">
+                  mdi-volume-high
+                </v-icon>
+              </template>
+            </v-slider>
+            <hr />
+            <v-subheader>Instrument</v-subheader>
+            <v-radio-group v-model="synth" column class="px-5">
+              <v-radio label="Ambient Track 1" value="radio-1"></v-radio>
+              <v-radio label="Ambient Track 2" value="radio-2"></v-radio>
+              <v-radio label="Rain" value="radio-3"></v-radio>
+            </v-radio-group>
+          </v-col>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
         <v-navigation-drawer
           v-if="$vuetify.breakpoint.smAndUp"
           v-model="volPanel"
@@ -229,10 +348,9 @@
             <hr />
             <v-subheader>Instrument</v-subheader>
             <v-radio-group v-model="synth" column class="px-5">
-              <v-radio label="Piano" value="radio-1"></v-radio>
-              <v-radio label="Violin" value="radio-2"></v-radio>
-              <v-radio label="Sky Pads" value="radio-3"></v-radio>
-              <v-radio label="Guitar" value="radio-4"></v-radio>
+              <v-radio label="Ambient Track 1" value="radio-1"></v-radio>
+              <v-radio label="Ambient Track 2" value="radio-2"></v-radio>
+              <v-radio label="Rain" value="radio-3"></v-radio>
             </v-radio-group>
           </v-col>
         </v-navigation-drawer>
@@ -244,17 +362,21 @@
 <script>
 import Blob from "../assets/content/Blob_Point"
 import VSwatches from "vue-swatches"
+import MusicPlayer from "~/components/MusicPlayer"
 let oldMousePoint = { x: 0, y: 0 }
 let hover = false
 export default {
-  components: { VSwatches },
+  components: { 
+      VSwatches,
+      MusicPlayer, 
+    },
   data() {
     return {
-      blue: "#1D8BEA",
+      blue: "#8CE5EA",
       rose: "#FC54A7",
       green: "#03EE9B",
       orange: "#FEAB20",
-      switch1: true,
+      switch1: false,
       colorpick: null,
       swatches: ["#8CE5EA", "#4FD17F", "#000", "#44C3A7"],
       synth: null,
@@ -470,57 +592,6 @@ export default {
       oldMousePoint.x = e.clientX
       oldMousePoint.y = e.clientY
     },
-    /*mouseMove(e) {
-      console.log(e.clientX, e.clientY)
-      let blob = this.blob
-      //let hover = false
-      let pos = this.blob.center
-      let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y }
-      let dist = Math.sqrt(diff.x * diff.x + diff.y * diff.y)
-      let angle = null
-      this.blob.mousePos = {
-        x: pos.x - e.clientX,
-        y: pos.y - e.clientY,
-      }
-      if (dist < this.blob.radius && this.hover === false) {
-        let vector = {
-          x: e.clientX - pos.x,
-          y: e.clientY - pos.y,
-        }
-        angle = Math.atan2(vector.y, vector.x)
-        this.hover = true
-      } else if (dist > this.blob.radius && this.hover === true) {
-        let vector = {
-          x: e.clientX - pos.x,
-          y: e.clientY - pos.y,
-        }
-
-        angle = Math.atan2(vector.y, vector.x)
-        this.hover = false
-        blob.color = null
-      }
-      if (typeof angle == "number") {
-        let nearestPoint = null
-        let distanceFromPoint = 100
-        blob.points.forEach((point) => {
-          if (Math.abs(angle - point.azimuth) < distanceFromPoint) {
-            nearestPoint = point
-            distanceFromPoint = Math.abs(angle - point.azimuth)
-          }
-        })
-        if (nearestPoint) {
-          let strength = {
-            x: this.oldMousePoint.x - e.clientX,
-            y: this.oldMousePoint.y - e.clientY,
-          }
-          Math.sqrt(strength.x * strength.x + strength.y * strength.y) * 1
-          if (strength > 100) strength = 100
-          nearestPoint.acceleration = (strength / 100) * (this.hover ? -1 : 1)
-        }
-      }
-      this.oldMousePoint.x = e.clientX
-      this.oldMousePoint.y = e.clientY
-    },*/
   },
 }
 </script>
@@ -558,7 +629,7 @@ export default {
   }
 }
 
-.container {
+.wrapper {
   z-index: 1;
   position: fixed;
   bottom: 3%;
@@ -579,5 +650,8 @@ export default {
 }
 .custom {
   border-style: none;
+}
+a {
+  text-decoration: none;
 }
 </style>

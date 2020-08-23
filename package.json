@@ -15,6 +15,7 @@
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-0",
     "chart.js": "^2.9.3",
+    "d3-scale": "^3.2.1",
     "es6-promise": "^4.2.8",
     "hchs-vue-charts": "^1.2.8",
     "nuxt": "^2.0.0",

@@ -5,6 +5,7 @@ export const state = () => ({
       src: require("~/assets/images/values/growth.svg"),
       flex: 6,
       id: "1",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -13,6 +14,7 @@ export const state = () => ({
       src: require("~/assets/images/customize.svg"),
       flex: 6,
       id: "2",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -21,6 +23,7 @@ export const state = () => ({
       src: require("~/assets/images/values/spirituality.svg"),
       flex: 6,
       id: "3",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -29,6 +32,7 @@ export const state = () => ({
       src: require("~/assets/images/values/work.svg"),
       flex: 6,
       id: "4",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -37,6 +41,7 @@ export const state = () => ({
       src: require("~/assets/images/values/health.svg"),
       flex: 6,
       id: "5",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -45,6 +50,7 @@ export const state = () => ({
       src: require("~/assets/images/values/community.svg"),
       flex: 6,
       id: "6",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -53,6 +59,7 @@ export const state = () => ({
       src: require("~/assets/images/values/family.svg"),
       flex: 6,
       id: "7",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -61,6 +68,7 @@ export const state = () => ({
       src: require("~/assets/images/values/social.svg"),
       flex: 6,
       id: "8",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -69,6 +77,7 @@ export const state = () => ({
       src: require("~/assets/images/values/intimate.svg"),
       flex: 6,
       id: "9",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -77,6 +86,7 @@ export const state = () => ({
       src: require("~/assets/images/values/parenting.svg"),
       flex: 6,
       id: "10",
+      keywords: "",
       importance: "",
       effectiveness: "",
     },
@@ -96,6 +106,9 @@ export const mutations = {
   updateImportance(state, {card, importance}) {
     card.importance = importance
   },
+  updateKeywords(state, {card, keywords}) {
+    card.keywords = keywords
+  }
 }
 
 //state.cards.find((el) => el.id === answer.id).effectiveness = answer.value

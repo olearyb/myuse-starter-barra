@@ -1,23 +1,18 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h2 class="card-title">Bar</h2>
     </div>
-
     <div class="card-img-bottom">
-      <canvas id="fooCanvas" count="2" />
-
       <chartjs-bar
-        v-for="(item, index) in types"
         :key="index"
-        :backgroundcolor="item.bgColor"
+        :backgroundcolor="type.bgColor"
         :beginzero="beginZero"
         :bind="true"
-        :bordercolor="item.borderColor"
-        :data="item.data"
-        :datalabel="item.dataLabel"
+        :bordercolor="type.borderColor"
+        :data="type.data"
+        :datalabel="type.dataLabel"
         :labels="labels"
-        target="fooCanvas"
+        :options="barChartOptions"
       />
     </div>
   </div>
@@ -28,21 +23,48 @@ export default {
   data() {
     return {
       beginZero: true,
-      labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      types: [
+      labels: ["Sun", "Mon"],
+      type:
         {
           bgColor: "#de98ab",
           borderColor: "0c0306",
-          data: [1, 3, 5, 7, 2, 4, 6],
+          data: [1, 9],
           dataLabel: "Bar",
         },
-        {
-          bgColor: "#98ddde",
-          borderColor: "030c0c",
-          data: [1, 5, 2, 6, 3, 7, 4],
-          dataLabel: "Baz",
-        },
-      ],
+        barChartOptions: {
+          responsive: true,
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: 'Google analytics data',
+            fontSize: 24,
+            fontColor: '#6b7280'
+          },
+          tooltips: {
+            backgroundColor: '#17BF62'
+          },
+          scales: {
+            xAxes: [
+              {
+                gridLines: {
+                  display: false
+                }
+              }
+            ],
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                },
+                gridLines: {
+                  display: false
+                }
+              }
+            ]
+          }
+        }
     }
   },
 }

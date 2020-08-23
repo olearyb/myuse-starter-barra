@@ -8,7 +8,7 @@
           </v-icon>
           Self Development Tools
         </h1>
-        <v-card class="question card__text pa-sm-5 py-5 px-2">
+        <v-card class="pa-sm-5 py-5 px-2 ma-20">
           <v-card-text>
             <v-row>
               <v-col cols="12">
@@ -23,16 +23,22 @@
                 </div>
               </v-col>
             </v-row>
-            <hr class="my-10" />
+          </v-card-text>
+        </v-card>
+        <br />
+        <v-card class="pa-sm-5 py-5 px-2">
+          <v-card-text>
             <v-row>
               <v-col cols="12">
                 <h1 class="pa-5 text-center">Values Compass</h1>
                 <p class="pa-5 text-center">
-                  This tool is in development. Check back soon.
+                  Use the 'go' button to go Values Compass tool.
                 </p>
                 <Nav />
                 <div class="pa-5 text-center">
-                  <v-btn large>...</v-btn>
+                  <nuxt-link to="/Values">
+                    <v-btn color="primary" dark large>Go</v-btn>
+                  </nuxt-link>
                 </div>
               </v-col>
             </v-row>

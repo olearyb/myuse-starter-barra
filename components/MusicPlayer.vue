@@ -63,7 +63,7 @@ export default {
     props: {
       loop: {
 		  type: Boolean,
-		  default: false
+		  default: true
 	    }
     },
     data() {
@@ -106,6 +106,7 @@ export default {
                 this.player.src = this.current.src
             }
             this.player.play()
+            this.player.loop = true
             this.isPlaying = true
         },
         pause() {

@@ -55,7 +55,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/pwa", "vue-swatches/nuxt"],
+  modules: ["@nuxtjs/pwa", "vue-swatches/nuxt", '@neneos/nuxt-animate.css'],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

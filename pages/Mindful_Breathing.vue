@@ -19,9 +19,9 @@
         </p>
         <v-card class="question card__text pa-sm-5 py-5 px-2">
           <v-row class="pt-7 pa-sm-10">
-            <v-col cols="12" sm="6" class="text_block pa-10 my-auto">
+            <v-col cols="12" sm="6" class="text_block pa-10 my-auto animate__animated animate__fadeInLeft">
               <h2>Follow</h2>
-              <p>
+              <p >
                 the instructions on screen while breathing deeply and counting
                 each breath
               </p>
@@ -29,7 +29,7 @@
             <v-col cols="12" sm="6" class="intro_img pa-10">
               <v-img
                 :src="require('~/assets/images/circle.svg').default"
-                class="text-center inhale"
+                class="text-center"
               >
                 <transition name="fade" mode="out-in">
                   <span v-if="show" class="center"><h3>Breathe</h3></span>
@@ -45,7 +45,7 @@
                 class="text-center inhale"
               />
             </v-col>
-            <v-col cols="12" sm="6" class="text_block pa-10">
+            <v-col cols="12" sm="6" class="text_block pa-10 animate__animated animate__fadeInRight">
               <h2>Customise</h2>
               <p>
                 your experience by changing the length of each breath and the

@@ -19,14 +19,14 @@
             >
               <nuxt-link :to="`Domains/keywords/${card.id}`">
                 <v-card class="pa-5">
-                  <v-img :src="card.src" class="white--text align-end ma-5">
+                  <v-img :src="card.src" class="white--text align-end ma-5" height="200px">
                   </v-img>
                   <v-card-title
                     class="title"
                     v-text="card.title"
                   ></v-card-title>
-                  <v-card-actions>
-                    <v-btn text>Explore</v-btn>
+                  <v-card-actions class="explore">
+                    <v-btn rounded color="primary" class="px-2">Explore</v-btn>
                   </v-card-actions>
                 </v-card>
               </nuxt-link>
@@ -51,5 +51,11 @@ export default {
 <style scoped>
 .title {
   white-space: pre;
+}
+a {
+  text-decoration: none;
+}
+.explore {
+  text-align: end;
 }
 </style>

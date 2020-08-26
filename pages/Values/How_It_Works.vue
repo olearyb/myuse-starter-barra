@@ -30,10 +30,10 @@
             </v-col>
           </v-row>
           <div class="m-2 text-center pb-10">
-            <nuxt-link to="/Values">
+            <nuxt-link to="/values">
               <v-btn color="primary" dark large>Back</v-btn>
             </nuxt-link>
-            <nuxt-link to="/Values/Domains">
+            <nuxt-link to="/values/domains">
               <v-btn color="primary" dark large>Next</v-btn>
             </nuxt-link>
           </div>

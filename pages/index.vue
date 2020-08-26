@@ -17,7 +17,7 @@
                   Use the 'go' button to go to the mindful breathing tool.
                 </p>
                 <div class="pa-5 text-center">
-                  <nuxt-link to="/Mindful_Breathing">
+                  <nuxt-link to="/mindful_breathing">
                     <v-btn color="primary" dark large>Go</v-btn>
                   </nuxt-link>
                 </div>

@@ -25,7 +25,7 @@
             <nuxt-link :to="`../${card.id}`">
               <v-btn color="primary" class="mx-5" dark large>Back</v-btn>
             </nuxt-link>
-            <nuxt-link to="/Values/Domains">
+            <nuxt-link to="/values/domains">
               <v-btn color="primary" class="mx-5" dark large>FInish</v-btn>
             </nuxt-link>
           </div>

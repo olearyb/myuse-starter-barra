@@ -21,7 +21,7 @@ export default {
     return {
       data: [
         ["Importance", 9],
-        ["Effectiveness", 6],
+        ["Effectiveness", 1],
       ]
     };
   },

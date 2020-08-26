@@ -17,7 +17,6 @@
                 From 0 - 10, how effectively are you currently living by these
                 values?
                 <br />
-                {{ effectiveness }}
               </p>
             </v-col>
             <v-col cols="12">

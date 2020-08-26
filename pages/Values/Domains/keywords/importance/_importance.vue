@@ -17,7 +17,6 @@
                 stage in your life.<br /><br />
                 From 0 - 10, how important are these values to you?
                 <br />
-                {{ importance }}
               </p>
             </v-col>
             <v-col cols="12">

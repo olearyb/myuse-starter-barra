@@ -1,0 +1,117 @@
+/*
+ ** This file contains the shared MyUse library styles
+ ** Please add your custom styles to custom.scss instead
+ **
+ ** Sizing Notes
+ ** 100px = 5.556rem
+ ** 40px = 2.222rem
+ ** 26px = 1.444rem
+ ** 24px = 1.333rem
+ ** 22px = 1.222rem
+ ** 20px = 1.111rem
+ ** 18px = 1rem
+ */
+.theme--light.v-application .container {
+  max-width: 780px !important;
+}
+
+.theme--light.v-application .v-toolbar__title {
+  font-size: 1.444rem;
+}
+
+@media screen and (max-width: 600px) {
+  .theme--light.v-application .v-toolbar__title {
+    font-size: 1.333rem;
+    padding-left: 10px !important;
+  }
+}
+
+.theme--light.v-application .v-toolbar__title .toolbar-title-link {
+  color: var(--v-white-base);
+  text-decoration: none;
+}
+
+.theme--light.v-application #pwa-button {
+  display: none;
+}
+
+.theme--light.v-application .v-app-bar__nav-icon {
+  color: var(--v-white-base) !important;
+}
+
+.theme--light.v-application .v-navigation-drawer {
+  background: var(--v-primary-base);
+}
+
+.theme--light.v-application .v-navigation-drawer .v-icon {
+  font-size: 1.333rem;
+}
+
+.theme--light.v-application .v-navigation-drawer .v-list-item__title {
+  font-size: 1rem;
+}
+
+.theme--light.v-application .v-navigation-drawer .v-list-item--active {
+  font-weight: bold;
+}
+
+.theme--light.v-application .card__header {
+  background: none;
+  border-radius: 0;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+  font-weight: normal;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.theme--light.v-application .card__header .v-icon {
+  display: none;
+}
+
+.theme--light.v-application .v-card {
+  -webkit-box-shadow: 0px 2px 70px 0px rgba(110, 130, 208, 0.18);
+          box-shadow: 0px 2px 70px 0px rgba(110, 130, 208, 0.18);
+}
+
+.theme--light.v-application .v-card.card__text {
+  font-size: 1rem;
+}
+
+.theme--light.v-application .v-slider__thumb-label {
+  font-size: 20px;
+}
+
+.theme--light.v-application .question__slider {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.theme--light.v-application .v-slider__tick-label {
+  color: var(--v-primary-base);
+}
+
+@media screen and (max-width: 780px) {
+  .theme--light.v-application .iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin: 20px 0 40px;
+  }
+  .theme--light.v-application .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media print {
+  .theme--light.v-application .v-content {
+    padding: 0 !important;
+  }
+}
+/*# sourceMappingURL=myuse.css.map */

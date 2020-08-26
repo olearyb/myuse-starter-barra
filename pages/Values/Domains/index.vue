@@ -17,7 +17,7 @@
               :sm="card.flex"
               xs="1"
             >
-              <nuxt-link :to="`Domains/keywords/${card.id}`">
+              <nuxt-link :to="`domains/keywords/${card.id}`">
                 <v-card class="pa-5">
                   <v-img :src="card.src" class="white--text align-end ma-5" height="200px">
                   </v-img>

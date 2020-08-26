@@ -31,7 +31,7 @@
                   outlined
                 ></v-text-field>-->
                 <v-combobox
-                  v-model="select"
+                  v-model="keywords"
                   class="py-5"
                   multiple
                   label="Enter a keyword"
@@ -70,6 +70,7 @@ export default {
       id: this.$route.params.keyword,
       select: [],
       items: [],
+
       search: "", //sync search
       /*cards: [
         {

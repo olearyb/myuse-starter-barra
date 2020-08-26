@@ -9,16 +9,16 @@
           <v-row>
             <v-col cols="12">
               <h2 class="my-10">Keywords</h2>
-              <p>list of keywords {{ keywords }} </p>
+              <v-chip v-for="keyword in keywords" :key="keyword" class="mx-1">{{ keyword }}</v-chip>
             </v-col>
             <v-col cols="12">
               <v-divider class="my-2"></v-divider>
             </v-col>
             <v-col cols="12">
-              <p>{{ importance }}</p><br />
-              <p> {{ effectiveness }} </p>
               <h2 class="my-10">Ratings</h2>
-              <bar-chart :data="barChartData" :options="barChartOptions" :height="200" />
+              <p>The bar chart below represents the ratings you gave for Importance
+                and Effectiveness, respectively</p>
+              <bar-chart :data="barChartData" :options="barChartOptions" :height="200" class="py-10"/>
             </v-col>
           </v-row>
           <div class="m-2 text-center pb-10">
@@ -39,6 +39,7 @@
 //import ChartBar from "~/components/chart-bar"
 import BarChart from '~/components/BarChart'
 import { mapGetters } from "vuex"
+import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels'
 
 const chartColors = {
   red: 'rgb(255, 99, 132)',
@@ -57,24 +58,34 @@ export default {
   data() {
     return {
       id: this.$route.params.overview,
-      barChartData: {
+      /* barChartData: {
         labels: ['Importance', 'Effectiveness'],
         datasets: [
           {
             // backgroundColor: ["red", "orange", "yellow"],
             backgroundColor: [chartColors.blue, chartColors.green],
-            data: [this.importance, this.effectiveness]
+            data: [10, 7]
           }
         ]
-      },
+      }, */
       barChartOptions: {
         responsive: true,
         legend: {
           display: false,
         },
-        title: {
+        /*title: {
           display: true,
           text: 'Ratings'
+        }, */
+        plugins: {
+          datalabels: {
+            //align: 'end',
+            color: 'white',
+            font: {
+              weight: 'bold',
+              size: 20,
+            }
+          }
         },
         scales: {
           yAxes: [
@@ -82,6 +93,7 @@ export default {
               ticks: {
                 beginAtZero: true,
                 display: false,
+                max: 10,
               },
               gridLines: {
                 display: false,
@@ -95,7 +107,7 @@ export default {
             {
               gridLines: {
                 display: false,
-              }
+              },
             }
           ]
         }
@@ -105,6 +117,18 @@ export default {
   computed: {
     ...mapGetters("cards", ["getCards"]),
     //...mapState(["getCards"]),
+    barChartData() {
+      return {
+        labels: ['Importance', 'Effectiveness'],
+        datasets: [
+          {
+            // backgroundColor: ["red", "orange", "yellow"],
+            backgroundColor: [chartColors.blue, chartColors.green],
+            data: [this.importance, this.effectiveness]
+          }
+        ]
+      } 
+    },
     card() {
       return this.getCards.find((el) => el.id === this.id)
     },

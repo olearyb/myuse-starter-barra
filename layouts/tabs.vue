@@ -71,11 +71,11 @@ export default {
       tabs: [
         {
           name: "Values",
-          path: "Domains",
+          path: "/myuse-starter-barra/Values/Domains/",
         },
         {
           name: "Dashboard",
-          path: "Dashboard",
+          path: "/myuse-starter-barra/Values/Dashboard",
         },
       ],
       model: "tab-2",

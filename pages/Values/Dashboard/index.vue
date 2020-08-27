@@ -110,29 +110,19 @@ export default {
     },
     radarChartData() {
       return {
-        labels: [
-        "Personal Growth",
-        "Work",
-        "Leisure",
-        "Health",
-        "Community",
-        "Family",
-        "Parenting",
-        "Intimate",
-        "Social",
-        "Spirituality",
-        ],
+        labels: this.getCards.map(card => card.title),
         datasets: [
           {
             label: "Importance",
             backgroundColor: 'rgb(54, 162, 235, 0.75)',
-            data: [9, 8, 8, 9, 4, 6, 2, 8, 9, 5],
-            //data: [this.importance],
+            //data: [9, 8, 8, 9, 4, 6, 2, 8, 9, 5],
+            data: this.getCards.map(card => card.importance),
           },
           {
             label: "Effectiveness",
             backgroundColor: 'rgb(75, 192, 192, 0.75)',
-            data: [7, 7, 7, 6, 3, 5, 10, 6, 7, 4],
+            //data: [7, 7, 7, 6, 3, 5, 10, 6, 7, 4],
+            data: this.getCards.map(card => card.effectiveness),
           },
         ]
       }

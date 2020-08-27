@@ -58,7 +58,7 @@
             <v-col cols="12" sm="6" class="text_block pa-10">
               <h2>Learn</h2>
               <p>
-                a valuable and beneficial breathing technique than can have
+                a valuable and beneficial breathing technique that can have
                 positive health effects as well as allowing you to slow down
               </p>
             </v-col>

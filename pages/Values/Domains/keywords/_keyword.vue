@@ -12,7 +12,10 @@
               <v-col cols="12">
                 <p>
                   Use the text box below to type some keywords that represent
-                  this life domain for you personally.<br /><br />
+                  this life domain for you personally.
+                  
+                    <v-icon color="primary" @click.stop="openCtrlPanel">mdi-comment-question-outline</v-icon>
+                  <br /><br />
                   You can add up to 5 keywords in total. Type the keyword and
                   hit enter or click/tap outside the text field to add that
                   keyword.

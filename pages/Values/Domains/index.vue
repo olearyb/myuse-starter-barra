@@ -8,6 +8,35 @@
           </v-icon>
           Life Domains
         </h1>
+        <v-container class="text-center">
+          <v-btn
+            x-small
+            outlined
+            color="primary"
+            @click.stop="openInfoPanel"
+          >more info
+          </v-btn>
+        </v-container>
+        <v-dialog v-model="infoPanel" scrollable max-width="80vw">
+          <template v-slot:activator="{ on, attrs }"></template>
+          <v-card>
+            <v-card-title>How it Works</v-card-title>
+            <!-- <v-spacer></v-spacer>
+            <v-btn icon @click="infoPanel = false">
+            <v-icon>mdi-close</v-icon>
+            </v-btn> -->
+            <v-divider class="py-5"></v-divider>
+            <v-card-text>
+              Select a life domain from the list. Dont worry if
+              not all are relevant to you.<br /><br />
+              For each life category/domain, the goal is to identify a few <b>keywords</b> that
+              represent what is <b>important</b> or <b>meanigful</b>
+              to you in the selected life domain.<br /><br /> 
+              When thinking of keywords, it can be useful to ask
+              yourself the following questions:
+            </v-card-text>
+          </v-card>
+        </v-dialog>
         <v-container fluid>
           <v-row dense>
             <v-col
@@ -17,7 +46,7 @@
               :sm="card.flex"
               xs="1"
             >
-              <nuxt-link :to="`domains/keywords/${card.id}`">
+              <nuxt-link :to="`keywords/${card.id}`">
                 <v-card class="pa-5">
                   <v-img :src="card.src" class="white--text align-end ma-5" height="200px">
                   </v-img>
@@ -42,9 +71,19 @@
 import { mapGetters } from "vuex"
 export default {
   layout: "tabs",
+  data() {
+    return {
+      infoPanel: false,
+    }
+  },
   computed: {
     ...mapGetters("cards", ["getCards"]),
   },
+  methods: {
+    openInfoPanel() {
+      this.infoPanel = true
+    }
+  }
 }
 </script>
 

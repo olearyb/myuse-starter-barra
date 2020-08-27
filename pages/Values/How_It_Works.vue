@@ -33,7 +33,7 @@
             <nuxt-link to="/Values">
               <v-btn color="primary" dark large>Back</v-btn>
             </nuxt-link>
-            <nuxt-link to="/Values/Domains">
+            <nuxt-link to="/Values/Domains/">
               <v-btn color="primary" dark large>Next</v-btn>
             </nuxt-link>
           </div>

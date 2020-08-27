@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Chart Demo</h1>
+    <h1 class="card__header">Values Dashboard</h1>
     <v-card class="question card__text pa-sm-5 py-5 px-2">
       <div>
         <radar-chart :data="radarChartData" :options="radarChartOptions" :height="400" />
@@ -65,7 +65,7 @@ export default {
           ]
         }
       },
-      radarChartData: {
+      /* radarChartData: {
         labels: [
         "Personal Growth",
         "Work",
@@ -90,8 +90,8 @@ export default {
             data: [7, 7, 7, 6, 3, 5, 10, 6, 7, 4],
           },
         ]
-      } 
-    }
+      } */
+    } 
   },
   computed: {
     ...mapGetters("cards", ["getCards"]),
@@ -108,10 +108,10 @@ export default {
         ]
       } 
     },
-    /*radarChartData() {
+    radarChartData() {
       return {
         labels: [
-        card.title,
+        "Personal Growth",
         "Work",
         "Leisure",
         "Health",
@@ -127,6 +127,7 @@ export default {
             label: "Importance",
             backgroundColor: 'rgb(54, 162, 235, 0.75)',
             data: [9, 8, 8, 9, 4, 6, 2, 8, 9, 5],
+            //data: [this.importance],
           },
           {
             label: "Effectiveness",
@@ -135,7 +136,7 @@ export default {
           },
         ]
       }
-    },*/
+    },
     card() {
       return this.getCards.find((el) => el.id === this.id)
     },

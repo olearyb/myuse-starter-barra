@@ -38,12 +38,12 @@ export default {
     src: "~/plugins/vue-chart.js", mode: "client",
     src: "~/plugins/vuex-persistedstate.js", ssr: false,
   }],
-  plugins: [
+  /*plugins: [
     {
       src: "~/plugins/vue-chart.js",
       mode: "client",
     },
-  ],
+  ],*/
   /*
    ** Nuxt.js dev-modules
    */

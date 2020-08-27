@@ -13,6 +13,7 @@
             @mouseover="mouseMove"
           ></canvas>
           <h1 class="instructions">{{ currentStep.text }}</h1>
+          <h1> {{ currentStep.duration }} </h1>
         </div>
         <v-container fluid class="wrapper">
           <v-row align="center" justify="center">
@@ -285,7 +286,8 @@ export default {
   created() {
     window.addEventListener("mousemove", this.mouseMove)
     window.addEventListener("pointermove", this.mouseMove)
-		this.innerLoop = this.loop;
+    this.innerLoop = this.loop;
+    //this.countDownTimer()
   },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMove)
@@ -334,6 +336,7 @@ export default {
       // remove all timers
       window.clearInterval(this.stepAnimation)
       window.clearInterval(this.blobAnimation)
+      window.clearInterval(this.timer)
       // reset blob size
       this.setRadius()
       // reset steps
@@ -361,24 +364,43 @@ export default {
     },
     stepAnimate() {
       // go to next step, after waiting current "duration"
+      
       this.stepAnimation = setTimeout(() => {
         this.nextStep()
+        
       }, this.currentStep.duration * 1000)
+      //this.countDownTimer()
+      
     },
+    countDownTimer() {
+      if (this.currentStep.duration > 0) {
+        this.timer = setTimeout(() => {
+        this.currentStep.duration -= 1
+        this.countDownTimer()
+          }, 1000)
+        }
+      }, 
+    
     nextStep() {
       // loop through breathing steps
       if (this.step < this.breathConfig.length - 1) {
         this.step += 1
+        //countDownTimer()
       } else {
         // loop back to start
         this.step = 1
+        //this.countDownTimer()
       }
 
       // stop current step animation
       window.clearInterval(this.stepAnimation)
+      window.clearInterval(this.timer)
 
       // start next step animation
       this.stepAnimate()
+      this.countDownTimer()
+      
+
     },
     openCtrlPanel() {
       this.reset()
@@ -393,26 +415,37 @@ export default {
     },
     mouseMove(e) {
       let pos = this.blob.center
-      let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y }
+      // ----test for coord adjustments ---//
+      /*let parentPos = document
+        .getElementById("canv_wrap")
+        .getBoundingClientRect()
+      let childPos = document.getElementById("canvas").getBoundingClientRect()
+      let xAdj = e.clientX - parentPos.x
+      let yAdj = e.clientY - parentPos.y */
+      //-----------------------------------//
+      let diff = { x: e.offsetX - pos.x, y: e.offsetY - pos.y }
       let distx = diff.x * diff.x
       let disty = diff.y * diff.y
       let dist = Math.sqrt(distx + disty)
       let angle = null
       this.blob.mousePos = {
-        x: pos.x - e.clientX,
-        y: pos.y - e.clientY,
+        //x: pos.x - e.clientX,
+        //y: pos.y - e.clientY,
+        x: pos.x - e.offsetX,
+        y: pos.y - e.offsetY,
       }
+      console.log(e.offsetX, e.offsetY)
       if (dist < this.blob.radius && hover === false) {
         let vector = {
-          x: e.clientX - pos.x,
-          y: e.clientY - pos.y,
+          x: e.offsetX - pos.x,
+          y: e.offsetY - pos.y,
         }
         angle = Math.atan2(vector.y, vector.x)
         hover = true
       } else if (dist > this.blob.radius && hover === true) {
         let vector = {
-          x: e.clientX - pos.x,
-          y: e.clientY - pos.y,
+          x: e.offsetX - pos.x,
+          y: e.offsetY - pos.y,
         }
 
         angle = Math.atan2(vector.y, vector.x)
@@ -430,8 +463,8 @@ export default {
         })
         if (nearestPoint) {
           let strength = {
-            x: oldMousePoint.x - e.clientX,
-            y: oldMousePoint.y - e.clientY,
+            x: oldMousePoint.x - e.offsetX,
+            y: oldMousePoint.y - e.offsetY,
           }
           let strX = strength.x * strength.x
           let strY = strength.y * strength.y
@@ -441,8 +474,8 @@ export default {
           nearestPoint.acceleration = strDiv * (hover ? -1 : 1)
         }
       }
-      oldMousePoint.x = e.clientX
-      oldMousePoint.y = e.clientY
+      oldMousePoint.x = e.offsetX
+      oldMousePoint.y = e.offsetY
     },
   },
 }

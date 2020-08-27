@@ -1,11 +1,6 @@
 <template id="breath">
   <div id="page__home">
-    <v-row dense>
-      <v-col cols="12" align="center" justify="center">
-        <h1 class="card__header mx-10">
-          Mindful Breath
-        </h1>
-        <div id="canv_wrap" ref="canv_wrap" class="canv_wrap">
+    <div id="canv_wrap" ref="canv_wrap" class="canv_wrap">
           <canvas
             id="canvas"
             ref="canvas"
@@ -14,6 +9,11 @@
           ></canvas>
           <h1 class="instructions">{{ currentStep.text }}</h1>
         </div>
+    <v-row dense>
+      <v-col cols="12" align="center" justify="center">
+        <h1 class="card__header mx-10">
+          Mindful Breath
+        </h1>
         <v-container fluid class="container">
           <v-row align="center" justify="center">
             <v-spacer></v-spacer>
@@ -422,28 +422,49 @@ export default {
     },
     mouseMove(e) {
       let pos = this.blob.center
+      let box = document.querySelector("#canvas");
+      let bounds = box.getBoundingClientRect()
+      let width = box.offsetWidth;
+      let height = box.offsetHeight;
+      let vpX = e.clientX
+      let vpY = e.clientY
+      //let pos = {  x: width / 2, y: height / 2 }
+      //let pos = {  x: childPos.offsetWidth/2, y: childPos.offsetHeight / 2 }
+      //let pos = {  x: width - bounds.left, y: height - bounds.top }
+      //let pos = {  x: rect.top, y: rect.left}
+      //let pos = this.childPos.center
       // ----test for coord adjustments ---//
-      /*let parentPos = document
+      let parentPos = document
         .getElementById("canv_wrap")
         .getBoundingClientRect()
       let childPos = document.getElementById("canvas").getBoundingClientRect()
+      let rect = canvas.getBoundingClientRect()
+      //let pos = this.childPos.center
       let xAdj = e.clientX - parentPos.x
-      let yAdj = e.clientY - parentPos.y */
+      let yAdj = e.clientY - parentPos.y 
       //-----------------------------------//
       let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y }
+      //let diff = { x: e.offsetLeft - pos.x, y: e.offsetTop - pos.y }
+      //let diff = { x: e.clientX - this.offsetLeft, y: e.clientY - this.offsetTop }
       let distx = diff.x * diff.x
       let disty = diff.y * diff.y
       let dist = Math.sqrt(distx + disty)
       let angle = null
       this.blob.mousePos = {
-        x: pos.x - e.clientX,
-        y: pos.y - e.clientY,
+        //x: this.offsetLeft - e.clientX,
+        //y: this.offsetTop - e.clientY,
+       x: pos.x - e.clientX,
+       y: pos.y - e.clientY,
       }
-      console.log(this.blob.mousePos.x, this.blob.mousePos.y)
+      console.log(e.clientX, e.clientY)
+      //console.log(pos)
       if (dist < this.blob.radius && hover === false) {
         let vector = {
           x: e.clientX - pos.x,
           y: e.clientY - pos.y,
+          //x: e.offsetLeft - pos.x,
+          //y: e.offsetTop - pos.y,
+
         }
         angle = Math.atan2(vector.y, vector.x)
         hover = true
@@ -451,6 +472,8 @@ export default {
         let vector = {
           x: e.clientX - pos.x,
           y: e.clientY - pos.y,
+          //x: e.offsetLeft - pos.x,
+          //y: e.offsetTop - pos.y,
         }
 
         angle = Math.atan2(vector.y, vector.x)
@@ -459,7 +482,7 @@ export default {
       }
       if (typeof angle == "number") {
         let nearestPoint = null
-        let distanceFromPoint = 100
+        let distanceFromPoint = 1000
         this.blob.points.forEach((point) => {
           if (Math.abs(angle - point.azimuth) < distanceFromPoint) {
             nearestPoint = point
@@ -470,6 +493,8 @@ export default {
           let strength = {
             x: oldMousePoint.x - e.clientX,
             y: oldMousePoint.y - e.clientY,
+            //x: oldMousePoint.x - e.offsetLeft,
+            //y: oldMousePoint.y - e.offsetTop,
           }
           let strX = strength.x * strength.x
           let strY = strength.y * strength.y
@@ -481,6 +506,8 @@ export default {
       }
       oldMousePoint.x = e.clientX
       oldMousePoint.y = e.clientY
+      //oldMousePoint.x = e.offsetLeft
+      //oldMousePoint.y = e.offsetTop
     },
     /*mouseMove(e) {
       console.log(e.clientX, e.clientY)

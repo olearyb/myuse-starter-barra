@@ -18,6 +18,8 @@
         <v-card>
           <v-card-title class="title" v-text="card.title">
           </v-card-title>
+          <p class="pa-4">Importance: {{ card.importance }} <br />
+          Effectiveness: {{ card.effectiveness }} </p>
         </v-card>
         </v-col>
       </v-row>
@@ -75,8 +77,52 @@ export default {
         "Intimate",
         "Social",
         "Spirituality",
-      ],
-      datasets: [
+        ],
+        datasets: [
+          {
+            label: "Importance",
+            backgroundColor: 'rgb(54, 162, 235, 0.75)',
+            data: [9, 8, 8, 9, 4, 6, 2, 8, 9, 5],
+          },
+          {
+            label: "Effectiveness",
+            backgroundColor: 'rgb(75, 192, 192, 0.75)',
+            data: [7, 7, 7, 6, 3, 5, 10, 6, 7, 4],
+          },
+        ]
+      } 
+    }
+  },
+  computed: {
+    ...mapGetters("cards", ["getCards"]),
+    //...mapState(["getCards"]),
+    barChartData() {
+      return {
+        labels: ['Importance', 'Effectiveness'],
+        datasets: [
+          {
+            // backgroundColor: ["red", "orange", "yellow"],
+            backgroundColor: [chartColors.blue, chartColors.green],
+            data: [this.importance, this.effectiveness]
+          }
+        ]
+      } 
+    },
+    /*radarChartData() {
+      return {
+        labels: [
+        card.title,
+        "Work",
+        "Leisure",
+        "Health",
+        "Community",
+        "Family",
+        "Parenting",
+        "Intimate",
+        "Social",
+        "Spirituality",
+        ],
+        datasets: [
           {
             label: "Importance",
             backgroundColor: 'rgb(54, 162, 235, 0.75)',
@@ -89,11 +135,35 @@ export default {
           },
         ]
       }
+    },*/
+    card() {
+      return this.getCards.find((el) => el.id === this.id)
+    },
+    effectiveness: {
+      get() {
+        return this.card.effectiveness
+      },
+      set(effectiveness) {
+        this.$store.commit("cards/updateEffectiveness", { card: this.card, effectiveness})
+      },
+    },
+    importance: {
+      get() {
+        return this.card.importance
+      },
+      set(importance) {
+        this.$store.commit("cards/updateImportance", { card: this.card, importance})
+      },
+    },
+    keywords: {
+      get() {
+        return this.card.keywords
+      },
+      set(keywords) {
+        this.$store.commit("cards/updateKeywords", { card: this.card, keywords})
+      }
     }
   },
-  computed: {
-    ...mapGetters("cards", ["getCards"]),
-  }
   /* computed: {
     radarChartData() {
       return {

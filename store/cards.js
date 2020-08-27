@@ -1,3 +1,5 @@
+import createPersistedState from "vuex-persistedstate"
+
 export const state = () => ({
   cards: [
     {
@@ -92,6 +94,8 @@ export const state = () => ({
     },
   ],
 })
+
+export const plugins = [createPersistedState()]
 
 export const getters = {
   getCards: (state) => {

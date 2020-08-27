@@ -14,6 +14,7 @@
             <v-col cols="12">
               <v-divider class="my-2"></v-divider>
             </v-col>
+            <p>{{ effectiveness }}</p>
             <v-col cols="12">
               <h2 class="my-10">Ratings</h2>
               <p>The bar chart below represents the ratings you gave for Importance

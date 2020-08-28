@@ -2,7 +2,7 @@
   <div id="page__home">
     <v-row dense>
       <v-col cols="12" align="center" justify="center">
-        <h1 class="card__header mx-10">
+        <h1 class="card__header mx-10 main_title">
           Mindful Breath
         </h1>
         <div ref="canv_wrap" class="canv_wrap">
@@ -12,8 +12,7 @@
             touch-action="none"
             @mouseover="mouseMove"
           ></canvas>
-          <h1 class="instructions">{{ currentStep.text }}</h1>
-          <h1> {{ currentStep.duration }} </h1>
+          <h1 class="instructions">{{ currentStep.text }}<br />{{ time }}</h1>
         </div>
         <v-container fluid class="wrapper">
           <v-row align="center" justify="center">
@@ -237,18 +236,19 @@ export default {
       green: "#03EE9B",
       orange: "#FEAB20",
       colorpick: null,
+      time: 5, 
       ctrlPanel: null,
       volPanel: null,
       blob: null,
       animating: false,
       step: 0,
-      padding: 50,
+      padding: 70,
       ivl: 1000,
       items: [{ title: "Dashboard" }, { title: "Photos" }, { title: "About" }],
       breathConfig: [
         { text: "Press Play" },
         {
-          dir: -0.2,
+          dir: 0.2,
           text: "Inhale",
           duration: 5,
         },
@@ -258,7 +258,7 @@ export default {
           duration: 5,
         },
         {
-          dir: 0.2,
+          dir: -0.2,
           text: "Exhale",
           duration: 5,
         },
@@ -367,19 +367,22 @@ export default {
       
       this.stepAnimation = setTimeout(() => {
         this.nextStep()
-        
+        this.time = this.currentStep.duration
+        //this.countDownTimer()
       }, this.currentStep.duration * 1000)
-      //this.countDownTimer()
+      this.countDownTimer()
       
     },
     countDownTimer() {
+      let time = this.currentStep.duration
       if (this.currentStep.duration > 0) {
         this.timer = setTimeout(() => {
-        this.currentStep.duration -= 1
+        this.time -= 1
+        //this.time = this.currentStep.duration
         this.countDownTimer()
           }, 1000)
         }
-      }, 
+      },
     
     nextStep() {
       // loop through breathing steps
@@ -389,6 +392,7 @@ export default {
       } else {
         // loop back to start
         this.step = 1
+        //this.time = this.currentStep.duration
         //this.countDownTimer()
       }
 
@@ -398,7 +402,7 @@ export default {
 
       // start next step animation
       this.stepAnimate()
-      this.countDownTimer()
+      //this.countDownTimer()
       
 
     },
@@ -514,6 +518,7 @@ export default {
   }
 }
 
+
 .wrapper {
   z-index: 1;
   position: fixed;
@@ -532,6 +537,7 @@ export default {
   color: #fff;
   position: absolute;
   z-index: 1;
+  font-size: 30px;
 }
 .custom {
   border-style: none;

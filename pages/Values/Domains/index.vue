@@ -29,11 +29,9 @@
             <v-card-text>
               Select a life domain from the list. Dont worry if
               not all are relevant to you.<br /><br />
-              For each life category/domain, the goal is to identify a few <b>keywords</b> that
-              represent what is <b>important</b> or <b>meanigful</b>
-              to you in the selected life domain.<br /><br /> 
-              When thinking of keywords, it can be useful to ask
-              yourself the following questions:
+              For each life category/domain, the goal is to identify a few <b>keywords</b> 
+              or <b>phrases</b> that represent what is <b>important</b> or <b>meanigful</b>
+              to you in the selected life domain.<br /><br />                
             </v-card-text>
           </v-card>
         </v-dialog>

@@ -14,7 +14,45 @@
                   Use the text box below to type some keywords that represent
                   this life domain for you personally.
                   
-                    <v-icon color="primary" @click.stop="openCtrlPanel">mdi-comment-question-outline</v-icon>
+                    <v-icon color="primary" @click.stop="openPanel">mdi-comment-question-outline</v-icon>
+                      <v-dialog v-model="panel" scrollable max-width="80vw">
+                        <template v-slot:activator="{ on, attrs }"></template>
+                        <v-card>
+                          <v-card-title>Keywords</v-card-title>
+                          <v-divider></v-divider>
+                          <v-card-text>
+                            When thinking of keywords, it can be useful to ask
+                            yourself the following questions:<br /><br /> 
+                            <div>
+                              <ul>
+                                <li>What sort of person do I want to be?</li>
+                                <li>What do I want to do?</li>
+                                <li>How do I ideally want to behave?</li>
+                              </ul>
+                            </div>
+                            <!--<v-row class="pb-7 pa-sm-10">
+                              <v-col cols="12" sm="4" class="intro_img px-5">
+                                <v-img
+                                  :src="require('~/assets/images/Q1.svg')"
+                                  class="text-center inhale"
+                                />
+                              </v-col>
+                              <v-col cols="12" sm="4" class="intro_img px-5">
+                                <v-img
+                                  :src="require('~/assets/images/Q2.svg')"
+                                  class="text-center inhale"
+                                />
+                              </v-col>
+                              <v-col cols="12" sm="4" class="intro_img px-5">
+                                <v-img
+                                  :src="require('~/assets/images/Q3.svg')"
+                                  class="text-center inhale"
+                                />
+                              </v-col>
+                            </v-row>-->
+                          </v-card-text>
+                        </v-card>
+                      </v-dialog>
                   <br /><br />
                   You can add up to 5 keywords in total. Type the keyword and
                   hit enter or click/tap outside the text field to add that
@@ -73,70 +111,13 @@ export default {
       id: this.$route.params.keyword,
       select: [],
       items: [],
-
-      search: "", //sync search
-      /*cards: [
-        {
-          title: "Personal Growth",
-          src: require("~/assets/images/community.svg"),
-          flex: 6,
-          id: "1",
-        },
-        {
-          title: "Leisure",
-          src: require("~/assets/images/customize.svg"),
-          flex: 6,
-          id: "2",
-        },
-        {
-          title: "Sprituality",
-          src: require("~/assets/images/feedback.svg"),
-          flex: 6,
-          id: "3",
-        },
-        {
-          title: "Work",
-          src: require("~/assets/images/sitting.svg"),
-          flex: 6,
-          id: "4",
-        },
-        {
-          title: "Health",
-          src: require("~/assets/images/follow.svg"),
-          flex: 6,
-          id: "5",
-        },
-        {
-          title: "Community & Environment",
-          src: require("~/assets/images/girl_compass.svg"),
-          flex: 6,
-          id: "6",
-        },
-        {
-          title: "Family Relationships",
-          src: require("~/assets/images/skills.svg"),
-          flex: 6,
-          id: "7",
-        },
-        {
-          title: "Social Relationships",
-          src: require("~/assets/images/thought_bubbles.svg"),
-          flex: 6,
-          id: "8",
-        },
-        {
-          title: "Intimate Relationships",
-          src: require("~/assets/images/study.svg"),
-          flex: 6,
-          id: "9",
-        },
-        {
-          title: "Parenting",
-          src: require("~/assets/images/learn_blue.svg"),
-          flex: 6,
-          id: "10",
-        },
-      ],*/
+      panel: false,
+      search: "", 
+    }
+  },
+  methods: {
+    openPanel() {
+      this.panel = true
     }
   },
   computed: {

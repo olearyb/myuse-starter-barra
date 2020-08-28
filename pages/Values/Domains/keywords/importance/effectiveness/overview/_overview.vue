@@ -9,6 +9,7 @@
           <v-row>
             <v-col cols="12">
               <h2 class="my-10">Keywords</h2>
+              <p>Below is the list of keywords / phrases that you assigned to this life domain.</p>
               <v-chip v-for="keyword in keywords" :key="keyword" class="mx-1">{{ keyword }}</v-chip>
             </v-col>
             <v-col cols="12">
@@ -25,7 +26,7 @@
             <nuxt-link :to="`../${card.id}`">
               <v-btn color="primary" class="mx-5" dark large>Back</v-btn>
             </nuxt-link>
-            <nuxt-link to="/values/domains">
+            <nuxt-link to="/Values/Domains">
               <v-btn color="primary" class="mx-5" dark large>FInish</v-btn>
             </nuxt-link>
           </div>

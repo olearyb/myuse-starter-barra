@@ -9,8 +9,8 @@
           How Does it Work?
         </h1>
         <v-card class="question card__text pa-sm-5 py-5 px-2">
-          <v-row class="pb-7 pa-sm-10">
-            <v-col cols="12" sm="6" class="text_block pa-10">
+          <v-row>
+            <v-col cols="12" class="text_block pa-10">
               <p>
                 You will be given a choice of <b>life domains</b>
                 to evaluate, dont worry if not all are relevant to you.
@@ -22,9 +22,23 @@
                 following <b>questions:</b>
               </p>
             </v-col>
-            <v-col cols="12" sm="6" class="intro_img pa-10">
+          </v-row>
+          <v-row class="pb-7 pa-sm-10">
+            <v-col cols="12" sm="4" class="intro_img px-5">
               <v-img
-                :src="require('~/assets/images/thought_bubbles.svg')"
+                :src="require('~/assets/images/Q1.svg')"
+                class="text-center inhale"
+              />
+            </v-col>
+            <v-col cols="12" sm="4" class="intro_img px-5">
+              <v-img
+                :src="require('~/assets/images/Q2.svg')"
+                class="text-center inhale"
+              />
+            </v-col>
+            <v-col cols="12" sm="4" class="intro_img px-5">
+              <v-img
+                :src="require('~/assets/images/Q3.svg')"
                 class="text-center inhale"
               />
             </v-col>

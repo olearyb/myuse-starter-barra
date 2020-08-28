@@ -1,6 +1,33 @@
 <template>
   <div>
     <h1 class="card__header">Values Dashboard</h1>
+    <v-container class="text-center">
+          <v-btn
+            x-small
+            outlined
+            color="primary"
+            @click.stop="openInfoPanel"
+          >more info
+          </v-btn>
+        </v-container>
+        <v-dialog v-model="infoPanel" scrollable max-width="80vw">
+          <template v-slot:activator="{ on, attrs }"></template>
+          <v-card>
+            <v-card-title>How it Works</v-card-title>
+            <!-- <v-spacer></v-spacer>
+            <v-btn icon @click="infoPanel = false">
+            <v-icon>mdi-close</v-icon>
+            </v-btn> -->
+            <v-divider class="py-5"></v-divider>
+            <v-card-text>
+              Select a life domain from the list. Dont worry if
+              not all are relevant to you.<br /><br />
+              For each life category/domain, the goal is to identify a few <b>keywords</b> 
+              or <b>phrases</b> that represent what is <b>important</b> or <b>meanigful</b>
+              to you in the selected life domain.<br /><br />                
+            </v-card-text>
+          </v-card>
+        </v-dialog>
     <v-card class="question card__text pa-sm-5 py-5 px-2">
       <div>
         <radar-chart :data="radarChartData" :options="radarChartOptions" :height="400" />
@@ -18,6 +45,7 @@
         <v-card>
           <v-card-title class="title" v-text="card.title">
           </v-card-title>
+          <bar-chart :data="barChartData" :options="barChartOptions" :height="200" class="py-10"/>
           <p class="pa-4">Importance: {{ card.importance }} <br />
           Effectiveness: {{ card.effectiveness }} </p>
         </v-card>
@@ -30,13 +58,25 @@
 <script>
 import { mapGetters } from "vuex"
 import RadarChart from "~/components/RadarChart"
+import BarChart from '~/components/BarChart'
+const chartColors = {
+  red: 'rgb(255, 99, 132)',
+  orange: 'rgb(255, 159, 64)',
+  yellow: 'rgb(255, 205, 86)',
+  green: 'rgb(75, 192, 192)',
+  blue: 'rgb(54, 162, 235)',
+  purple: 'rgb(153, 102, 255)',
+  grey: 'rgb(201, 203, 207)'
+}
 export default {
   layout: "tabs",
   components: {
     RadarChart,
+    BarChart,
   },
   data() {
     return {
+      infoPanel: false,
       radarChartOptions: {
           responsive: true,
           scales: {
@@ -65,6 +105,50 @@ export default {
           ]
         }
       },
+      barChartOptions: {
+        responsive: true,
+        legend: {
+          display: false,
+        },
+        /*title: {
+          display: true,
+          text: 'Ratings'
+        }, */
+        plugins: {
+          datalabels: {
+            //align: 'end',
+            color: 'white',
+            font: {
+              weight: 'bold',
+              size: 20,
+            }
+          }
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                display: false,
+                max: 10,
+              },
+              gridLines: {
+                display: false,
+              },
+              scaleLabel: {
+                display: false,
+              }
+            }
+          ],
+          xAxes: [
+            {
+              gridLines: {
+                display: false,
+              },
+            }
+          ]
+        }
+      }
       /* radarChartData: {
         labels: [
         "Personal Growth",
@@ -93,6 +177,11 @@ export default {
       } */
     } 
   },
+  methods: {
+    openInfoPanel() {
+      this.infoPanel = true
+    }
+  },
   computed: {
     ...mapGetters("cards", ["getCards"]),
     //...mapState(["getCards"]),
@@ -103,14 +192,15 @@ export default {
           {
             // backgroundColor: ["red", "orange", "yellow"],
             backgroundColor: [chartColors.blue, chartColors.green],
-            data: [this.importance, this.effectiveness]
-          }
+            data: this.getCards.map(card => card.importance)
+          }, 
         ]
       } 
     },
     radarChartData() {
       return {
-        labels: this.getCards.map(card => card.title),
+        //labels: this.getCards.map(card => card.title),
+        labels: ["Personal Growth", "Leisure", "Spirituality", "Work", "Health", "Community & Environment", "Family", "Social", "Intimate", "Parenting"],
         datasets: [
           {
             label: "Importance",

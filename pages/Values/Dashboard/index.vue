@@ -13,18 +13,17 @@
         <v-dialog v-model="infoPanel" scrollable max-width="80vw">
           <template v-slot:activator="{ on, attrs }"></template>
           <v-card>
-            <v-card-title>How it Works</v-card-title>
+            <v-card-title>Values Dashboard</v-card-title>
             <!-- <v-spacer></v-spacer>
             <v-btn icon @click="infoPanel = false">
             <v-icon>mdi-close</v-icon>
             </v-btn> -->
             <v-divider class="py-5"></v-divider>
             <v-card-text>
-              Select a life domain from the list. Dont worry if
-              not all are relevant to you.<br /><br />
-              For each life category/domain, the goal is to identify a few <b>keywords</b> 
-              or <b>phrases</b> that represent what is <b>important</b> or <b>meanigful</b>
-              to you in the selected life domain.<br /><br />                
+              This dashboard is an overview of the ratings that you gave each life domain in the values section<br /><br />
+              The purpose of this dashboard is for you to <b>review</b> your importance and effectiveness ratings all in one place.
+              <br /><br /> 
+              If the chart is empty, that means you have not filled out any value ratings in the Value section.                
             </v-card-text>
           </v-card>
         </v-dialog>

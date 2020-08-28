@@ -45,14 +45,14 @@
             <v-row align="center" justify="center" class="mt-2">
               <v-col cols="12">
                 <nuxt-link to="/More_Info">
-                  <v-btn medium class="mx-5 custom"
-                    ><v-icon>mdi-information-outline</v-icon></v-btn
-                  >
+                  <!--<v-btn medium class="mx-5 custom"
+                    >--><v-icon large class="mx-5 custom" color="#96CDFF">mdi-information-outline</v-icon><!--</v-btn
+                  >-->
                 </nuxt-link>
                 <nuxt-link to="/Benefits">
-                  <v-btn medium class="mx-5 custom"
-                    ><v-icon> mdi-heart-pulse</v-icon></v-btn
-                  >
+                  <!--<v-btn medium class="mx-5 custom"
+                    >--><v-icon large class="mx-5 custom" color="#F986AE"> mdi-heart-pulse</v-icon><!--</v-btn
+                  >-->
                 </nuxt-link>
               </v-col>
             </v-row>
@@ -522,7 +522,7 @@ export default {
 .wrapper {
   z-index: 1;
   position: fixed;
-  bottom: 3%;
+  bottom: 2%;
   left: 50%;
   transform: translateX(-50%);
 }

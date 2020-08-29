@@ -89,7 +89,7 @@
             </v-row>
           </v-card-text>
           <div class="m-2 text-center pb-10">
-            <nuxt-link to="/values/domains">
+            <nuxt-link to="/Values/Domains/">
               <v-btn color="primary" dark large>Back</v-btn>
             </nuxt-link>
             <nuxt-link :to="`importance/${card.id}`">

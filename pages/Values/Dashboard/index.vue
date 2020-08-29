@@ -35,7 +35,7 @@
     <v-container fluid>
       <v-row dense>
         <v-col
-          v-for="card in getCards"
+          v-for="(card,index) in getCards"
           :key="card.id"
           cols="12"
           :sm="card.flex"
@@ -44,9 +44,52 @@
         <v-card>
           <v-card-title class="title" v-text="card.title">
           </v-card-title>
-          <bar-chart :data="barChartData" :options="barChartOptions" :height="200" class="py-10"/>
-          <p class="pa-4">Importance: {{ card.importance }} <br />
-          Effectiveness: {{ card.effectiveness }} </p>
+          <v-row>
+            <v-col class="text-center imp"><b>{{ card.importance }}</b></v-col>
+            <v-col class="text-center eff"><b>{{ card.effectiveness }}</b></v-col>
+          </v-row>
+          <v-row>
+            <v-col class="text-center impCol">Importance</v-col>
+            <v-col class="text-center effCol">Effectiveness</v-col>
+          </v-row>
+          <!--<radial-progress-bar :diameter="200"
+                       :completed-steps="completedSteps"
+                       :total-steps="totalSteps" /> -->
+          <!-- <bar-chart :data="barChartData" :options="barChartOptions" :height="200" class="py-10"/> -->
+          <!-- <BarChart
+            class="chart"
+            :data-set="data"
+            :margin-left="0"
+            :margin-top="40"
+            :tick-count="5"
+            :bar-padding="0.5"
+          />-->
+          <!-- <p class="pa-4">Importance: {{ card.importance }} <br />
+          Effectiveness: {{ card.effectiveness }} </p>-->
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <!-- <v-btn
+              icon
+              @click="show = !show"
+              > -->
+              <v-btn
+                icon
+                @click="selectedIndex = index, show = !show"
+              >
+              <!-- <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>-->
+              <v-icon>{{ index === selectedIndex ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+            </v-btn>
+          </v-card-actions>
+          <v-expand-transition>
+            <!--<div v-show="show"> -->
+              <div v-show="show && index === selectedIndex">
+              <v-divider></v-divider>
+              <v-card-text>
+                <b>Keywords:</b>
+              </v-card-text>
+              <v-chip v-for="keyword in card.keywords" :key="keyword" class="ml-4 my-4" >{{ keyword }} </v-chip>
+            </div>
+          </v-expand-transition>
         </v-card>
         </v-col>
       </v-row>
@@ -55,9 +98,13 @@
 </template>
 
 <script>
+import RadialProgressBar from 'vue-radial-progress'
 import { mapGetters } from "vuex"
 import RadarChart from "~/components/RadarChart"
 import BarChart from '~/components/BarChart'
+//import BarChart from '~/components/BarChart.vue'
+import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels'
+
 const chartColors = {
   red: 'rgb(255, 99, 132)',
   orange: 'rgb(255, 159, 64)',
@@ -72,9 +119,18 @@ export default {
   components: {
     RadarChart,
     BarChart,
+    RadialProgressBar,
   },
   data() {
     return {
+      //completedSteps: this.importance,
+      /*data: [
+        ["Importance", this.importance],
+        ["Effectiveness", 1],
+      ],*/
+      //totalSteps: 10,
+      selectedIndex: null,
+      show: false,
       infoPanel: false,
       radarChartOptions: {
           responsive: true,
@@ -100,6 +156,11 @@ export default {
               gridLines: {
                 display: false,
               },
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                max: 10,
+              }
             }
           ]
         }
@@ -191,8 +252,8 @@ export default {
           {
             // backgroundColor: ["red", "orange", "yellow"],
             backgroundColor: [chartColors.blue, chartColors.green],
-            data: this.getCards.map(card => card.importance)
-          }, 
+            data: card.importance
+          } 
         ]
       } 
     },
@@ -270,3 +331,21 @@ export default {
   }*/
 }
 </script>
+
+<style>
+.imp {
+  color: #36A2EB;
+  font-size: 36px;
+}
+.eff {
+  color: #4BC0C0;
+  font-size: 36px;
+}
+.impCol {
+  color: #36A2EB;
+}
+.effCol {
+  color: #4BC0C0;
+}
+
+</style>

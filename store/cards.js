@@ -8,7 +8,7 @@ export const state = () => ({
       flex: 6,
       id: "1",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
     {
@@ -17,7 +17,7 @@ export const state = () => ({
       flex: 6,
       id: "2",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
     {
@@ -26,7 +26,7 @@ export const state = () => ({
       flex: 6,
       id: "3",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
     {
@@ -35,7 +35,7 @@ export const state = () => ({
       flex: 6,
       id: "4",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
     {
@@ -44,7 +44,7 @@ export const state = () => ({
       flex: 6,
       id: "5",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
     {
@@ -53,7 +53,7 @@ export const state = () => ({
       flex: 6,
       id: "6",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
     {
@@ -62,7 +62,7 @@ export const state = () => ({
       flex: 6,
       id: "7",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
     {
@@ -71,7 +71,7 @@ export const state = () => ({
       flex: 6,
       id: "8",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
     {
@@ -80,7 +80,7 @@ export const state = () => ({
       flex: 6,
       id: "9",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
     {
@@ -89,7 +89,7 @@ export const state = () => ({
       flex: 6,
       id: "10",
       keywords: [],
-      importance: null,
+      importance: "",
       effectiveness: "",
     },
   ],

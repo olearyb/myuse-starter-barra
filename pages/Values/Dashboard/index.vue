@@ -45,16 +45,35 @@
           <v-card-title class="title" v-text="card.title">
           </v-card-title>
           <v-row>
-            <v-col class="text-center imp"><b>{{ card.importance }}</b></v-col>
-            <v-col class="text-center eff"><b>{{ card.effectiveness }}</b></v-col>
+            <v-col class="text-center imp">
+              <radial-progress-bar
+                class="progress_bar"
+                :diameter="150"
+                :completed-steps="card.importance"
+                :total-steps="totalSteps"
+                innerStrokeColor="#FFFFFF"
+                startColor="#36A2EB"
+                stopColor="#36A2EB">
+                <b>{{ card.importance }}</b>
+                </radial-progress-bar>
+            </v-col>
+            <v-col class="text-center eff">
+              <radial-progress-bar
+                class="progress_bar"
+                :diameter="150"
+                :completed-steps="card.effectiveness"
+                :total-steps="totalSteps"
+                innerStrokeColor="#FFFFFF"
+                startColor="#4BC0C0"
+                stopColor="#4BC0C0">
+                <b>{{ card.effectiveness }}</b>
+                </radial-progress-bar>
+            </v-col>
           </v-row>
           <v-row>
             <v-col class="text-center impCol">Importance</v-col>
             <v-col class="text-center effCol">Effectiveness</v-col>
           </v-row>
-          <!--<radial-progress-bar :diameter="200"
-                       :completed-steps="completedSteps"
-                       :total-steps="totalSteps" /> -->
           <!-- <bar-chart :data="barChartData" :options="barChartOptions" :height="200" class="py-10"/> -->
           <!-- <BarChart
             class="chart"
@@ -123,12 +142,7 @@ export default {
   },
   data() {
     return {
-      //completedSteps: this.importance,
-      /*data: [
-        ["Importance", this.importance],
-        ["Effectiveness", 1],
-      ],*/
-      //totalSteps: 10,
+      totalSteps: 10,
       selectedIndex: null,
       show: false,
       infoPanel: false,
@@ -302,8 +316,8 @@ export default {
       },
       set(keywords) {
         this.$store.commit("cards/updateKeywords", { card: this.card, keywords})
-      }
-    }
+      } 
+    },
   },
   /* computed: {
     radarChartData() {
@@ -346,6 +360,9 @@ export default {
 }
 .effCol {
   color: #4BC0C0;
+}
+.progress_bar {
+
 }
 
 </style>

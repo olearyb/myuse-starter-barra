@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="card__header">Values Dashboard</h1>
+    <h1 class="card__header">Values Review</h1>
     <v-container class="text-center">
           <v-btn
             x-small
@@ -13,7 +13,7 @@
         <v-dialog v-model="infoPanel" scrollable max-width="80vw">
           <template v-slot:activator="{ on, attrs }"></template>
           <v-card>
-            <v-card-title>Values Dashboard</v-card-title>
+            <v-card-title>Values Review</v-card-title>
             <!-- <v-spacer></v-spacer>
             <v-btn icon @click="infoPanel = false">
             <v-icon>mdi-close</v-icon>
@@ -47,11 +47,11 @@
           <v-row>
             <v-col class="text-center imp">
               <radial-progress-bar
-                class="progress_bar"
-                :diameter="150"
+                class="progress_bar mx-auto"
+                :diameter="125"
                 :completed-steps="card.importance"
                 :total-steps="totalSteps"
-                innerStrokeColor="#FFFFFF"
+                innerStrokeColor="#F0F0F0"
                 startColor="#36A2EB"
                 stopColor="#36A2EB">
                 <b>{{ card.importance }}</b>
@@ -59,11 +59,11 @@
             </v-col>
             <v-col class="text-center eff">
               <radial-progress-bar
-                class="progress_bar"
-                :diameter="150"
+                class="progress_bar mx-auto"
+                :diameter="125"
                 :completed-steps="card.effectiveness"
                 :total-steps="totalSteps"
-                innerStrokeColor="#FFFFFF"
+                innerStrokeColor="#F0F0F0"
                 startColor="#4BC0C0"
                 stopColor="#4BC0C0">
                 <b>{{ card.effectiveness }}</b>

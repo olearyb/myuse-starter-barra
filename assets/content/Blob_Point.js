@@ -94,7 +94,7 @@ export default class Blob {
     return this._canvas
   }
   set numPoints(value) {
-    if (value > 10) {
+    if (value > 2) {
       this._points = value
     }
   }
@@ -164,7 +164,7 @@ export class Point {
   set speed(value) {
     if (typeof value == "number") {
       this._speed = value
-      this.radialEffect += this._speed * 3
+      this.radialEffect += this._speed * 3.5
     }
   }
   get speed() {

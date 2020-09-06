@@ -15,7 +15,7 @@
                   this life domain for you personally.
                   
                     <v-icon color="primary" @click.stop="openPanel">mdi-comment-question-outline</v-icon>
-                      <v-dialog v-model="panel" scrollable max-width="80vw">
+                      <v-dialog v-model="panel" scrollable max-width="80vw" >
                         <template v-slot:activator="{ on, attrs }"></template>
                         <v-card>
                           <v-card-title>Keywords</v-card-title>
@@ -90,10 +90,10 @@
           </v-card-text>
           <div class="m-2 text-center pb-10">
             <nuxt-link to="/Values/Domains/">
-              <v-btn color="primary" dark large>Back</v-btn>
+              <v-btn color="primary" class="mx-5" dark large>Back</v-btn>
             </nuxt-link>
             <nuxt-link :to="`importance/${card.id}`">
-              <v-btn color="primary" dark large>Next</v-btn>
+              <v-btn color="primary" class="mx-5" dark large>Next</v-btn>
             </nuxt-link>
           </div>
         </v-card>

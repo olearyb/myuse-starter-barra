@@ -74,8 +74,8 @@ export default {
           path: "/myuse-starter-barra/Values/Domains/",
         },
         {
-          name: "Dashboard",
-          path: "/myuse-starter-barra/Values/Dashboard",
+          name: "Review",
+          path: "/myuse-starter-barra/Values/Review",
         },
       ],
       model: "tab-2",

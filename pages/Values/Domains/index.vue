@@ -44,7 +44,7 @@
               :sm="card.flex"
               xs="1"
             >
-              <nuxt-link :to="`keywords/${card.id}`">
+              
                 <v-card class="pa-5">
                   <v-img :src="card.src" class="white--text align-end ma-5" height="200px">
                   </v-img>
@@ -52,11 +52,17 @@
                     class="title"
                     v-text="card.title"
                   ></v-card-title>
+                  <v-row class="pl-5">
+                  <nuxt-link :to="`keywords/${card.id}`">
                   <v-card-actions class="explore">
                     <v-btn rounded color="primary" class="px-2">Explore</v-btn>
                   </v-card-actions>
+                  </nuxt-link>
+                  <v-spacer></v-spacer>
+                  <v-icon class="pr-5" large color="#3BB372" v-if="card.keywords != 0 && card.effectiveness != 0 && card.importance != 0">mdi-check-circle-outline</v-icon>
+                  </v-row>
                 </v-card>
-              </nuxt-link>
+                  
             </v-col>
           </v-row>
         </v-container>
@@ -76,6 +82,33 @@ export default {
   },
   computed: {
     ...mapGetters("cards", ["getCards"]),
+    card() {
+      return this.getCards.find((el) => el.id === this.id)
+    },
+    effectiveness: {
+      get() {
+        return this.card.effectiveness
+      },
+      set(effectiveness) {
+        this.$store.commit("cards/updateEffectiveness", { card: this.card, effectiveness})
+      },
+    },
+    importance: {
+      get() {
+        return this.card.importance
+      },
+      set(importance) {
+        this.$store.commit("cards/updateImportance", { card: this.card, importance})
+      },
+    },
+    keywords: {
+      get() {
+        return this.card.keywords
+      },
+      set(keywords) {
+        this.$store.commit("cards/updateKeywords", { card: this.card, keywords})
+      }
+    }
   },
   methods: {
     openInfoPanel() {

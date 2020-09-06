@@ -19,7 +19,7 @@
           <v-row class="pb-7 pa-sm-10">
             <v-col cols="12" sm="5" class="intro_img pa-10 my-auto">
               <v-img
-                :src="require('~/assets/images/learn_blue.svg')"
+                :src="require('~/assets/images/lung_blue.svg')"
                 class="text-center inhale"
               />
             </v-col>

@@ -23,7 +23,19 @@
               </p>
             </v-col>
           </v-row>
-          <v-row class="pb-7 pa-sm-10">
+          <v-row class="pb-7 px-sm-10">
+            <v-col cols="12">
+              <v-img
+                v-if="$vuetify.breakpoint.smAndUp"
+                :src="require('~/assets/images/thoughts_Qs_woman.svg')"
+                class="text-center inhale"
+              />
+              <v-img
+                v-if="$vuetify.breakpoint.xsOnly"
+                :src="require('~/assets/images/thoughts_Qs_mobile.svg')"
+                class="text-center inhale"
+              />
+            <!--</v-col>
             <v-col cols="12" sm="4" class="intro_img px-5">
               <v-img
                 :src="require('~/assets/images/Q1.svg')"
@@ -40,7 +52,7 @@
               <v-img
                 :src="require('~/assets/images/Q3.svg')"
                 class="text-center inhale"
-              />
+              />-->
             </v-col>
           </v-row>
           <div class="m-2 text-center pb-10">

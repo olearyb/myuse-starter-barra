@@ -11,7 +11,7 @@
               <h2 class="my-10">Effectiveness</h2>
               <p>
                 Now that you have rated the overall importance of your values in
-                this life domain, the next step is to
+                the area of {{ card.title }}, the next step is to
                 <b>rate how effectively</b> you are living by these values, at
                 this stage in your life.<br /><br />
                 From 0 - 10, how effectively are you currently living by these

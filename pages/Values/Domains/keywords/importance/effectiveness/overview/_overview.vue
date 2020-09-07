@@ -6,10 +6,9 @@
           {{ card.title }}
         </h1>
         <v-card class="question card__text pa-sm-5 py-5 px-2">
-          <v-row>
             <v-col cols="12">
               <h2 class="my-10">Keywords</h2>
-              <p>Below is the list of keywords / phrases that you assigned to this life domain.</p>
+              <p>Below is the list of keywords / phrases that you assigned to {{ card.title }}.</p>
               <v-chip v-for="keyword in keywords" :key="keyword" class="mx-1">{{ keyword }}</v-chip>
             </v-col>
             <v-col cols="12">
@@ -21,13 +20,42 @@
                 and Effectiveness, respectively</p>
               <bar-chart :data="barChartData" :options="barChartOptions" :height="200" class="py-10"/>
             </v-col>
+            <v-col cols="12">
+              <v-divider class="my-2"></v-divider>
+            </v-col>
+            <v-col cols="12">
+              <h2 class="my-10">Next Steps</h2>
+              <p class="my-10">
+                 Is your importance is higher than your effectiveness, or vice versa?
+                 Any mismatch means you may not always be effective in working toward your important values, 
+                 or giving too much attention to less important values. <br><br>
+                 If this is the case, this means that you have identified an area to work on!
+              </p>
+            </v-col>
+            <v-row class="pb-7 pa-3">
+            
+            <v-col cols="12" sm="6" class="text_block my-auto">
+              <p>
+                <b>How can you bridge the gap between inconsistencies?</b><br><br>
+                It might help to set some goals that would bring you closer to achieving your values.
+              </p>
+            </v-col>
+            <v-col cols="12" sm="6" class="intro_img pa-10 my-auto">
+              <v-img
+                :src="require('~/assets/images/list.svg')"
+                class="text-center inhale"
+              />
+            </v-col>
           </v-row>
+          <v-col cols="12">
+              <v-divider class="my-2 pb-5"></v-divider>
+            </v-col>
           <div class="m-2 text-center pb-10">
             <nuxt-link :to="`../${card.id}`">
               <v-btn color="primary" class="mx-5" dark large>Back</v-btn>
             </nuxt-link>
             <nuxt-link to="/Values/Domains/">
-              <v-btn color="primary" class="mx-5" dark large>FInish</v-btn>
+              <v-btn color="primary" class="mx-5" dark large>Finish</v-btn>
             </nuxt-link>
           </div>
         </v-card>

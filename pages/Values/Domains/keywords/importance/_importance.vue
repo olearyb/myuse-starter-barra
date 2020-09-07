@@ -11,7 +11,7 @@
               <h2 class="my-10">Importance</h2>
               <p>
                 Now that you have listed some keywords that represent your
-                values in this life domain for you personally, the next step is
+                values in the area of {{ card.title }}, the next step is
                 to
                 <b>rate the importance</b> of these values as a whole, at this
                 stage in your life.<br /><br />

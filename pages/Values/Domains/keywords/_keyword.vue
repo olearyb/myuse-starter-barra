@@ -18,12 +18,31 @@
                       <v-dialog v-model="panel" scrollable max-width="80vw" >
                         <template v-slot:activator="{ on, attrs }"></template>
                         <v-card>
-                          <v-card-title>Keywords</v-card-title>
+                          <v-card-title >Keywords</v-card-title>
                           <v-divider></v-divider>
-                          <v-card-text>
+                          <v-card-text class="py-10">
                             When thinking of keywords, it can be useful to ask
                             yourself the following questions:<br /><br /> 
-                            <div>
+                            <v-col cols="8" class="text-center mx-auto" v-if="$vuetify.breakpoint.smAndUp">
+                              <v-img
+                                
+                                :src="require('~/assets/images/thoughts_Qs_woman.svg')"
+                                class="text-center inhale"
+                              />
+                              </v-col>
+                              <v-col cols="12" v-if="$vuetify.breakpoint.xsOnly">
+                              <v-img
+                                :src="require('~/assets/images/thoughts_Qs_mobile.svg')"
+                                class="text-center inhale"
+                              />
+                              </v-col>
+                              <v-divider></v-divider>
+                              <div class="m-2 text-center pt-10">
+                                  <v-btn color="primary" class="mx-5" dark large>Got it</v-btn>
+                                </nuxt-link>
+                              </div>
+                            
+                            <!--<div>
                               <ul>
                                 <li>What sort of person do I want to be?</li>
                                 <li>What do I want to do?</li>

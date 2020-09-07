@@ -26,7 +26,7 @@
             <v-col cols="12">
               <h2 class="my-10">Next Steps</h2>
               <p class="my-10">
-                 Is your importance is higher than your effectiveness, or vice versa?
+                 Is your importance higher than your effectiveness, or vice versa?
                  Any mismatch means you may not always be effective in working toward your important values, 
                  or giving too much attention to less important values. <br><br>
                  If this is the case, this means that you have identified an area to work on!

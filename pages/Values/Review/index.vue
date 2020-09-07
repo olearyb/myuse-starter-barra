@@ -162,7 +162,7 @@ export default {
                 },
                 scaleLabel: {
                     display: false,
-                }
+                },
                 }
             ],
           xAxes: [
@@ -174,7 +174,7 @@ export default {
                 beginAtZero: true,
                 min: 0,
                 max: 10,
-              }
+              },
             }
           ]
         }

@@ -11,9 +11,11 @@
             <v-row>
               <v-col cols="12">
                 <p>
+                  Values are your heart’s deepest desires for how you want to behave as a human being. Values
+                  are not about what you want to get or achieve; they are about <b>how you want to behave or act</b>
+                  on an ongoing basis. <br><br> 
                   Use the text box below to type some keywords that represent
-                  this life domain for you personally.
-                  
+                  your values in the area of {{ card.title }}.
                     <v-icon color="primary" @click.stop="openPanel">mdi-comment-question-outline</v-icon>
                       <v-dialog v-model="panel" scrollable max-width="80vw" >
                         <template v-slot:activator="{ on, attrs }"></template>
@@ -73,9 +75,30 @@
                         </v-card>
                       </v-dialog>
                   <br /><br />
-                  You can add up to 5 keywords in total. Type the keyword and
+                  Try to limit your keywords to 5 in total. You can either choose from the drop down menu
+                  of some commonly used values or, type your own keyword and
                   hit enter or click/tap outside the text field to add that
                   keyword.
+                  <v-icon color="primary" @click.stop="openPanel1">mdi-comment-question-outline</v-icon>
+                      <v-dialog v-model="panel1" scrollable max-width="80vw" >
+                        <template v-slot:activator="{ on, attrs }"></template>
+                        <v-simple-table>
+                          <template v-slot:default>
+                            <thead>
+                              <tr>
+                                <th>Value</th>
+                                <th>Description</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-for="item in desserts" :key="item.name">
+                                <td>{{ item.name }}</td>
+                                <td> {{ item.desctiption }} </td>
+                              </tr>
+                            </tbody>
+                          </template>
+                        </v-simple-table>
+                      </v-dialog>
                 </p>
               </v-col>
               <v-col cols="12">
@@ -92,6 +115,7 @@
                 ></v-text-field>-->
                 <v-combobox
                   v-model="keywords"
+                  :items="values"
                   class="py-5"
                   multiple
                   label="Enter a keyword"
@@ -129,14 +153,87 @@ export default {
     return {
       id: this.$route.params.keyword,
       select: [],
-      items: [],
+        desserts: [
+          {
+            name: "Acceptance",
+            desctiption: "to be open to and accepting of myself, others, life etc",
+          },
+          {
+            name: "Authenticity",
+            desctiption: "to be authentic, genuine, real; to be true to myself",
+          },
+        ],
+      values: [
+        "Acceptance",
+        "Adventure",
+        "Assertiveness",
+        "Authenticity",
+        "Beauty",
+        "Caring",
+        "Challenge",
+        "Compassion",
+        "Connection",
+        "Contribution",
+        "Conformity",
+        "Cooperation",
+        "Courage",
+        "Creativity",
+        "Curiosity",
+        "Encouragement",
+        "Equality",
+        "Excitement",
+        "Fairness",
+        "Fitness",
+        "Flexibility",
+        "Freedom",
+        "Friendliness",
+        "Forgiveness",
+        "Fun",
+        "Generosity",
+        "Gratitude",
+        "Honesty",
+        "Humour",
+        "Humility",
+        "Industry",
+        "Independence",
+        "Intimacy",
+        "Justice",
+        "Kindness",
+        "Love",
+        "Mindfulness",
+        "Order",
+        "Open-mindedness",
+        "Patience",
+        "Persistence",
+        "Pleasure",
+        "Power",
+        "Reciprocity",
+        "Respect",
+        "Responsibility",
+        "Romance",
+        "Safety",
+        "Self-awareness",
+        "Self-care",
+        "Self-development",
+        "Self-control",
+        "Sensuality",
+        "Sexuality",
+        "Spirituality",
+        "Skilfulness",
+        "Supportiveness",
+        "Trust",
+      ],
       panel: false,
+      panel1: false,
       search: "", 
     }
   },
   methods: {
     openPanel() {
       this.panel = true
+    },
+    openPanel1() {
+      this.panel1 = true
     }
   },
   computed: {
@@ -153,13 +250,6 @@ export default {
         this.$store.commit("cards/updateKeywords", { card: this.card, keywords})
       }
     }
-  },
-  watch: {
-    select(val) {
-      if (val.length > 5) {
-        this.$nextTick(() => this.select.pop())
-      }
-    },
   },
 }
 </script>

@@ -71,11 +71,13 @@ export default {
       tabs: [
         {
           name: "Values",
-          path: "/myuse-starter-barra/Values/Domains/",
+          //path: "/myuse-starter-barra/Values/Domains/",
+          path: "/myuse-starter-barra/values/domains/",
         },
         {
           name: "Review",
-          path: "/myuse-starter-barra/Values/Review",
+          //path: "/myuse-starter-barra/Values/Review",
+          path: "/myuse-starter-barra/values/review",
         },
       ],
       model: "tab-2",

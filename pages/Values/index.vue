@@ -94,7 +94,8 @@
             </v-col>
           </v-row>
           <div class="my-2 text-center pb-10">
-            <nuxt-link to="/Values/How_It_Works">
+            <!-- <nuxt-link to="/Values/How_It_Works"> -->
+            <nuxt-link to="/values/how_it_works">
               <v-btn color="primary" dark large>Get Started</v-btn>
             </nuxt-link>
           </div>

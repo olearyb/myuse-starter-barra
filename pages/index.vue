@@ -36,7 +36,8 @@
                 </p>
                 <Nav />
                 <div class="pa-5 text-center">
-                  <nuxt-link to="/Values/">
+                  <!--<nuxt-link to="/Values/"> -->
+                  <nuxt-link to="/values/">
                     <v-btn color="primary" dark large>Go</v-btn>
                   </nuxt-link>
                 </div>

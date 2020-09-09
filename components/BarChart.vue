@@ -1,3 +1,4 @@
+<!--SVG bar chart example -->
 <template>
   <svg class="barchart" :width="width + marginLeft / 2" :height="height + marginTop">
     <g :transform="`translate(${marginLeft / 2}, ${marginTop / 2})`">

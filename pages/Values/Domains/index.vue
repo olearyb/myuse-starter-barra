@@ -52,17 +52,17 @@
                     class="title"
                     v-text="card.title"
                   ></v-card-title>
-                  <v-row class="pl-5">
-                  <nuxt-link :to="`keywords/${card.id}`">
-                  <v-card-actions class="explore">
-                    <v-btn rounded color="primary" class="px-2">Explore</v-btn>
-                  </v-card-actions>
-                  </nuxt-link>
-                  <v-spacer></v-spacer>
-                  <v-icon class="pr-5" large color="#3BB372" v-if="card.keywords != 0 && card.effectiveness != 0 && card.importance != 0">mdi-check-circle-outline</v-icon>
+                  <v-row class="card_footer pl-5">
+                    <nuxt-link :to="`keywords/${card.id}`">
+                      <v-card-actions class="explore">
+                        <v-btn rounded color="primary" class="px-2">Explore</v-btn>
+                      </v-card-actions>
+                    </nuxt-link>
+                    <v-card-text class="pr-5" large color="#3BB372" v-if="card.keywords != 0 && card.effectiveness != 0 && card.importance != 0">DONE
+                      <v-icon class="pr-5" large color="#3BB372" v-if="card.keywords != 0 && card.effectiveness != 0 && card.importance != 0">mdi-check-circle-outline</v-icon>
+                    </v-card-text>
                   </v-row>
                 </v-card>
-                  
             </v-col>
           </v-row>
         </v-container>
@@ -127,5 +127,8 @@ a {
 }
 .explore {
   text-align: end;
+}
+.card_footer {
+  display: inline-block;
 }
 </style>
